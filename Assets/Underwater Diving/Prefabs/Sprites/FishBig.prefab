@@ -47,6 +47,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   death: {fileID: 1820545851295154, guid: b22a24e39bda14f3bb2b1feb1d07ee14, type: 3}
-  speed: 0.3
+  speed: 2
   timeTrigger: 0
 --- !u!50 &50066830953986102
 Rigidbody2D:

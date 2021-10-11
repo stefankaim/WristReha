@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject target;
+	public GameObject targetX;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +14,6 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (target.transform.position.x, target.transform.position.y, -10);	
+		transform.position = new Vector3 (targetX.transform.position.x, target.transform.position.y, -10);	
 	}
 }

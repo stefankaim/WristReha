@@ -37,9 +37,6 @@ public class Enemy : MonoBehaviour {
 			turnAround ();
 			turnTimer = 0;
 		}
-
-
-
 	}
 
 
@@ -49,7 +46,6 @@ public class Enemy : MonoBehaviour {
 			Instantiate (death, gameObject.transform.position, gameObject.transform.rotation);
 			Destroy (gameObject);
 		}
-
 	}
 
 	void turnAround(){
