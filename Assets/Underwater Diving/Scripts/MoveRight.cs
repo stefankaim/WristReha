@@ -23,7 +23,7 @@ public class MoveRight : MonoBehaviour
     void Update()
     {
         speedTimer += Time.deltaTime;
-        if (speedTimer >= increaseSpeed)
+        if(speedTimer >= increaseSpeed)
         {
             speedTimer = 0;
             moveSpeed += 0.1f;
