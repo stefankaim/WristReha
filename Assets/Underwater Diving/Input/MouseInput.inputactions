@@ -1,0 +1,46 @@
+{
+    "name": "MouseInput",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "d25db8f3-6652-49c4-922b-36a1565d52ab",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "97b38db8-fc3e-4cd3-984a-a68c72deca1e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d4c74947-e715-4ab8-8c48-119ae52b38d8",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse",
+            "bindingGroup": "Mouse",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
