@@ -1,0 +1,34 @@
+{
+    "name": "FootballInput",
+    "maps": [
+        {
+            "name": "Gloves",
+            "id": "3342b524-2dd5-4315-bd40-78d597440612",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "29096a38-63b1-4d00-b160-03ee4548530b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d21b9bcb-93f2-4fda-8424-b5e4d164edb4",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
