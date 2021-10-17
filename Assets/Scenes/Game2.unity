@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &694048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a02cb97004ab7d4458bcace690c6101e, type: 3}
+  m_PrefabInstance: {fileID: 994106975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &89755508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 134436, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+  m_PrefabInstance: {fileID: 344660944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &344660944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477882, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.43
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 477882, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
       propertyPath: m_LocalPosition.z
@@ -213,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -253,6 +263,66 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
+--- !u!1 &879580941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 879580943}
+  - component: {fileID: 879580942}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &879580942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879580941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09ec7eb10aeacd40ab3a7549e928fe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  glove: {fileID: 89755508}
+  objectGame:
+  - {fileID: 180044, guid: bc1b71610919d4b4b96bf425ea912eb8, type: 3}
+  objectGamePool:
+  - {fileID: 180044, guid: bc1b71610919d4b4b96bf425ea912eb8, type: 3}
+  grass: {fileID: 694048}
+  gameDuration: 30
+  gameOver: 0
+  seconds: 2
+  penaltyTime: 1
+  balls4Cash: 4
+  spawnNCoins: 2
+  timeRange: {x: 1, y: 2}
+  factorLevel: 4
+  level: 1
+  levelUp: 0
+--- !u!4 &879580943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879580941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994106975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,11 +481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -529,11 +599,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -595,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4410222190705176961, guid: 2a069689511b1d141b9d5f07fab0d65b, type: 3}
       propertyPath: m_LocalPosition.z

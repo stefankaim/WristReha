@@ -8,12 +8,9 @@ namespace supergoalkeeper
 
     public class CatcherController : MonoBehaviour
     {
-        /**
-		 * VARIABLES
-		 * */
-        private float maxWidth;// MAX WIDTH GAME SCENE
+        private float maxWidth;
 
-        private float movementX = 0;
+        private float movementX = 0f;
         public FootballInput footballInput;
         private Rigidbody2D gloves;
         public Camera cam;
@@ -25,27 +22,6 @@ namespace supergoalkeeper
             footballInput.Gloves.Move.canceled += ctx => MoveX(0);
         }
 
-        public static Bounds GetCombinedBoundingBoxOfChildren(Transform root)
-        {
-            if (root == null)
-            {
-                throw new System.Exception("The supplied transform was null");
-            }
-
-            var colliders = root.GetComponentsInChildren<Collider>();
-            if (colliders.Length == 0)
-            {
-                throw new System.Exception("The supplied transform " + root?.name + " does not have any children with colliders");
-            }
-
-            Bounds totalBBox = colliders[0].bounds;
-            foreach (var collider in colliders)
-            {
-                totalBBox.Encapsulate(collider.bounds);
-            }
-            return totalBBox;
-        }
-
         // Use this for initialization
         void Start()
         {
@@ -54,14 +30,9 @@ namespace supergoalkeeper
             {
                 cam = Camera.main;
             }
-
-            //DEFINE THE PLAYABLE ZONE
             Vector3 upperCorner = new Vector3(Screen.width, Screen.height, 0.0f);
             Vector3 targetWidth = cam.ScreenToWorldPoint(upperCorner);
 
-            //float catcherwidth = gloveBounds.bounds.extents.x;
-            //float catcherwidth = GetCombinedBoundingBoxOfChildren(gloves.transform).extents.x;
-            //float catcher = gloves;
             Collider2D collider = gloves.GetComponent<Collider2D>();
             Bounds totalBBox = collider.bounds;
             float catcherwidth = totalBBox.extents.x;
@@ -73,29 +44,21 @@ namespace supergoalkeeper
         // Update is called once per  physics timestep
         void FixedUpdate()
         {
-            //TRANSLATE THE CLICK/TOUCH POS TO GAME POINT
-            //Vector3 rawPosition	= cam.ScreenToWorldPoint(movementX);
+            // Position using the actual mouse position
+            // INACTIVE!
+            #region MousePosition
+            //Vector3 rawPosition = cam.ScreenToWorldPoint(new Vector3(footballInput.Gloves.Position.ReadValue<float>(), this.transform.position.y));
+            //Vector3 targetPosition = new Vector3(rawPosition.x, this.transform.position.y, 0.0f);
+            #endregion
 
-            //SET THE NEW POS OF CATCHER
-            //Vector3 targetPosition = new Vector3(rawPosition.x,this.transform.position.y,0.0f);
-
+            // Position using the delta of the mouse position
+            // ACTIVE!
+            #region DeltaMouse
             Vector3 targetPosition = new Vector3(gloves.position.x + movementX, this.transform.position.y, 0.0f);
+            #endregion
 
-
-
-            Vector2 position = new Vector2();
-            position.y = 0f;
-            position.x = movementX;
-            //gloves.velocity = position * Time.fixedDeltaTime;
-
-
-            //DEFINE THE PLAYABLE ZONE
             float targetWidth = Mathf.Clamp(targetPosition.x, -maxWidth, maxWidth);
-
-            //SET THE NEW POS OF CATCHER 
             targetPosition = new Vector3(targetWidth, targetPosition.y, targetPosition.z);
-
-            //MOVE CATCHER
             transform.position = targetPosition;
         }
 

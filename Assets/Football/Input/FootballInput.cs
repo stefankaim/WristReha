@@ -35,6 +35,15 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Position"",
+                    ""type"": ""Value"",
+                    ""id"": ""897f0507-22b6-4829-b4dd-35a9a7726c40"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce5152c0-99fc-41b4-b087-53a395bd9986"",
+                    ""path"": ""<Mouse>/position/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Position"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +77,7 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
         // Gloves
         m_Gloves = asset.FindActionMap("Gloves", throwIfNotFound: true);
         m_Gloves_Move = m_Gloves.FindAction("Move", throwIfNotFound: true);
+        m_Gloves_Position = m_Gloves.FindAction("Position", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -117,11 +138,13 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gloves;
     private IGlovesActions m_GlovesActionsCallbackInterface;
     private readonly InputAction m_Gloves_Move;
+    private readonly InputAction m_Gloves_Position;
     public struct GlovesActions
     {
         private @FootballInput m_Wrapper;
         public GlovesActions(@FootballInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gloves_Move;
+        public InputAction @Position => m_Wrapper.m_Gloves_Position;
         public InputActionMap Get() { return m_Wrapper.m_Gloves; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -134,6 +157,9 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_GlovesActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GlovesActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GlovesActionsCallbackInterface.OnMove;
+                @Position.started -= m_Wrapper.m_GlovesActionsCallbackInterface.OnPosition;
+                @Position.performed -= m_Wrapper.m_GlovesActionsCallbackInterface.OnPosition;
+                @Position.canceled -= m_Wrapper.m_GlovesActionsCallbackInterface.OnPosition;
             }
             m_Wrapper.m_GlovesActionsCallbackInterface = instance;
             if (instance != null)
@@ -141,6 +167,9 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Position.started += instance.OnPosition;
+                @Position.performed += instance.OnPosition;
+                @Position.canceled += instance.OnPosition;
             }
         }
     }
@@ -148,5 +177,6 @@ public partial class @FootballInput : IInputActionCollection2, IDisposable
     public interface IGlovesActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnPosition(InputAction.CallbackContext context);
     }
 }

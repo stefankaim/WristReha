@@ -12,16 +12,16 @@ namespace supergoalkeeper
         public int blinkTimes = 3; //TIMER BLINK SET UP
         public GameObject timer; // GUITEXT TIME
         public int goals = 0;
-    
+
 
         //COROUTINE TIMER BLINK, TIMER BLINKS WHEN A GOAL IS SCORED
         //IEnumerator timerBlink()
         //{
         //	for(int i=0;i<3 ;i++)
         //	{
-                /*this.timer.guiText.color=Color.red;*/
+        /*this.timer.guiText.color=Color.red;*/
         //		yield return new WaitForSeconds(0.2f);
-                /*this.timer.guiText.color=Color.white;*/
+        /*this.timer.guiText.color=Color.white;*/
         //		yield return new WaitForSeconds(0.2f);
         //	}
         //}
@@ -32,7 +32,7 @@ namespace supergoalkeeper
             //if(other.tag=="object" || other.tag=="object2")
             if (other != null)
             {
-                Debug.Log("Name: " + other.name);
+                //Debug.Log("Name: " + other.name);
                 if (other.name.Contains("sgk_ball"))
                 {
                     goals++;
