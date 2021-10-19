@@ -2,87 +2,71 @@
 using System.Collections;
 
 
-namespace supergoalkeeper
+public class GoalModel
 {
+    private string mGameObjectName = "Goal";
+    private GameObject mGameObject;
 
-    public class GoalModel
+    public GoalModel(string name)
     {
+        mGameObjectName = (name != "") ? name : mGameObjectName;
+        mGameObject = GameObject.Find(mGameObjectName);
 
-        private string mGameObjectName = "goal";
-        private GameObject mGameObject;
-
-        public GoalModel(string name)
+        if (mGameObject == null)
         {
-            mGameObjectName = (name != "") ? name : mGameObjectName;
-            mGameObject = GameObject.Find(mGameObjectName);
-
-            if (mGameObject == null)
-            {
-                Debug.LogWarning("Cannot find object template " + mGameObjectName);
-            }
+            Debug.LogWarning("Cannot find object template " + mGameObjectName);
         }
+    }
 
 
-        /// <summary>
-        /// Games the object.
-        /// </summary>
-        /// <returns>The object.</returns>
-        public GameObject gameObject
+    /// <summary>
+    /// Games the object.
+    /// </summary>
+    /// <returns>The object.</returns>
+    public GameObject gameObject
+    {
+        get
         {
-            get
-            {
-                return mGameObject;
-            }
+            return mGameObject;
         }
+    }
 
-        /// <summary>
-        /// Transform this instance.
-        /// </summary>
-        public Transform transform
+    /// <summary>
+    /// Transform this instance.
+    /// </summary>
+    public Transform transform
+    {
+        get
         {
-            get
-            {
-                return mGameObject.transform;
-            }
+            return mGameObject.transform;
         }
+    }
 
-        /// <summary>
-        /// Sets the position.
-        /// </summary>
-        /// <value>The position.</value>
-        public Vector3 position
+    /// <summary>
+    /// Sets the position.
+    /// </summary>
+    /// <value>The position.</value>
+    public Vector3 position
+    {
+        get
         {
-            get
-            {
-                return transform.position;
-            }
+            return transform.position;
         }
+    }
 
-        public int goals
+    /// <summary>
+    /// Gets the hero controller component.
+    /// </summary>
+    /// <value>The hero controller component.</value>
+    public goalController ComponentBehaviour
+    {
+        get
         {
-            get
+            if (gameObject == null)
             {
-                if (ComponentBehaviour != null)
-                {
-                    return ComponentBehaviour.goals;
-                }
-                return 0;
+                return null;
             }
-        }
-        /// <summary>
-        /// Gets the hero controller component.
-        /// </summary>
-        /// <value>The hero controller component.</value>
-        public goalController ComponentBehaviour
-        {
-            get
-            {
-                if (gameObject == null)
-                {
-                    return null;
-                }
-                return gameObject.GetComponent(typeof(goalController)) as goalController;
-            }
+            return gameObject.GetComponent(typeof(goalController)) as goalController;
         }
     }
 }

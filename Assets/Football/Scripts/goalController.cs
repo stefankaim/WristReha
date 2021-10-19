@@ -1,46 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace supergoalkeeper
+
+
+public class goalController : MonoBehaviour
 {
-    public class goalController : MonoBehaviour
+    public GoalCounter Health;
+
+    /// <summary>
+    /// Triggered when a goal is scored
+    /// </summary>
+    /// <param name="other">Collided object</param>
+    void OnTriggerEnter2D(Collider2D other)
     {
-
-        /**
-         * VARIABLES
-         * */
-        public int blinkTimes = 3; //TIMER BLINK SET UP
-        public GameObject timer; // GUITEXT TIME
-        public int goals = 0;
-
-
-        //COROUTINE TIMER BLINK, TIMER BLINKS WHEN A GOAL IS SCORED
-        //IEnumerator timerBlink()
-        //{
-        //	for(int i=0;i<3 ;i++)
-        //	{
-        /*this.timer.guiText.color=Color.red;*/
-        //		yield return new WaitForSeconds(0.2f);
-        /*this.timer.guiText.color=Color.white;*/
-        //		yield return new WaitForSeconds(0.2f);
-        //	}
-        //}
-
-        //WHEN A GOAL IS SCORED -1 SEC
-        void OnTriggerEnter2D(Collider2D other)
+        if (other != null)
         {
-            //if(other.tag=="object" || other.tag=="object2")
-            if (other != null)
+            if (other.name.Contains("ball"))
             {
-                //Debug.Log("Name: " + other.name);
-                if (other.name.Contains("sgk_ball"))
-                {
-                    goals++;
-                    GetComponent<AudioSource>().Play();
-                }
-                other.gameObject.SetActive(false);
+                Health.GotGoal();
+                GetComponent<AudioSource>().Play();
             }
-            //Destroy (other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 }
