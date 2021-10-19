@@ -44,6 +44,7 @@ public class TimeCounter : MonoBehaviour
             }
             if (countdown <= 0)
             {
+#warning Activate InputController just right here, not before (delta!)
                 startedCountdown = false;
                 countdownText.enabled = false;
             }
