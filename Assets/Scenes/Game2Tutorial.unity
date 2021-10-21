@@ -1291,7 +1291,7 @@ GameObject:
   - component: {fileID: 1366148447}
   - component: {fileID: 1366148446}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TutorialUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1961,6 +1961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 2117333723}
   countdownText: {fileID: 2071386110}
+  countdownOver: 0
 --- !u!1 &1968663237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1171691343}
+  Game: 2
 --- !u!1001 &4143657713434765550
 PrefabInstance:
   m_ObjectHideFlags: 0

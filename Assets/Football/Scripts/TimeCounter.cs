@@ -14,6 +14,7 @@ public class TimeCounter : MonoBehaviour
     private bool startedCountdown = false;
     private float countdown;
     private float secondCountdown = 0;
+    public bool countdownOver = false;
 
     private void Awake()
     {
@@ -47,6 +48,8 @@ public class TimeCounter : MonoBehaviour
 #warning Activate InputController just right here, not before (delta!)
                 startedCountdown = false;
                 countdownText.enabled = false;
+                countdownOver = true;
+                StartTimer();
             }
         }
     }
