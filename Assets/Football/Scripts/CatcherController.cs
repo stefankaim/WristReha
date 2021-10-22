@@ -12,6 +12,8 @@ public class CatcherController : MonoBehaviour
     public FootballInput footballInput;
     private Rigidbody2D gloves;
     public Camera cam;
+    public TimeCounter Timer;
+    public MissionText MissionInfo;
 
     void Awake()
     {
@@ -39,21 +41,24 @@ public class CatcherController : MonoBehaviour
     // Update is called once per physics timestep
     void FixedUpdate()
     {
-        // Inactive!
-        #region Move using the position of the mouse
-        //Vector3 rawPosition = cam.ScreenToWorldPoint(new Vector3(footballInput.Gloves.Position.ReadValue<float>(), this.transform.position.y));
-        //Vector3 targetPosition = new Vector3(rawPosition.x, this.transform.position.y, 0.0f);
-        #endregion
+        if (Timer.countdownOver && !MissionInfo.gameOver && !MissionInfo.gameDone)
+        {
+            // Inactive!
+            #region Move using the position of the mouse
+            //Vector3 rawPosition = cam.ScreenToWorldPoint(new Vector3(footballInput.Gloves.Position.ReadValue<float>(), this.transform.position.y));
+            //Vector3 targetPosition = new Vector3(rawPosition.x, this.transform.position.y, 0.0f);
+            #endregion
 
-        // Active!
-        #region Move using the delta of the mouse
-        float movementX = footballInput.Gloves.Move.ReadValue<float>() * Time.fixedDeltaTime;
-        Vector3 targetPosition = new Vector3(gloves.position.x + movementX, this.transform.position.y, 0.0f);
-        #endregion
+            // Active!
+            #region Move using the delta of the mouse
+            float movementX = footballInput.Gloves.Move.ReadValue<float>() * Time.fixedDeltaTime;
+            Vector3 targetPosition = new Vector3(gloves.position.x + movementX, this.transform.position.y, 0.0f);
+            #endregion
 
-        float targetWidth = Mathf.Clamp(targetPosition.x, -maxWidth, maxWidth);
-        targetPosition = new Vector3(targetWidth, targetPosition.y, targetPosition.z);
-        transform.position = targetPosition;
+            float targetWidth = Mathf.Clamp(targetPosition.x, -maxWidth, maxWidth);
+            targetPosition = new Vector3(targetWidth, targetPosition.y, targetPosition.z);
+            transform.position = targetPosition;
+        }
     }
 
     /// <summary>

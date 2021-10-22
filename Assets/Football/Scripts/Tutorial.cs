@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
     public CatchCounter Catched;
     public TimeCounter Time;
     public TutorialText TuText;
+    public MissionText MissionInfo;
 
     /// <summary>
     /// Use this for initialization.
@@ -84,10 +85,11 @@ public class Tutorial : MonoBehaviour
     /// </summary>
     void GameOver()
     {
-        TuText.SetText("Schade!\nMehr als 5 Tore bekommen");
+        //TuText.SetText("Schade!\nMehr als 5 Tore bekommen");
+        TuText.SetText("");
         gameOver = true;
         Time.StopTimer();
-#warning Change to another level or play again
+        MissionInfo.SetGameOver();
     }
 
     /// <summary>
@@ -95,10 +97,11 @@ public class Tutorial : MonoBehaviour
     /// </summary>
     private void GameDone()
     {
-        TuText.SetText("Super!\n6 Bälle gehalten");
+        //TuText.SetText("Super!\n6 Bälle gehalten");
+        TuText.SetText("");
         gameDone = true;
         Time.StopTimer();
-#warning Change to another level
+        MissionInfo.SetGameDone();
     }
 
     /// <summary>

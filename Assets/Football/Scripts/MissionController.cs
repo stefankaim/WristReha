@@ -18,6 +18,7 @@ public class MissionController : MonoBehaviour
     //Game Over / Done
     public bool gameOver = false; //Game Over got >= 5 goals
     public bool gameDone = false; //Game Done when >= 6 balls are catched
+    public float timeElapsed = 0f;
 
     //The time range when balls should spawn
     public Vector2 timeRange = new Vector2(1.0f, 2.0f);
@@ -27,12 +28,13 @@ public class MissionController : MonoBehaviour
 
     public GoalCounter Health;
     public CatchCounter Catched;
-    public TimeCounter Time;
+    public TimeCounter Timer;
+    public MissionText MissionInfo;
 
     /// <summary>
     /// Use this for initialization.
     /// </summary>
-    void Start()
+    private void Start()
     {
         if (!cam) cam = Camera.main;
 
@@ -60,19 +62,24 @@ public class MissionController : MonoBehaviour
     /// <summary>
     /// Update this instance
     /// </summary>
-    void Update()
+    private void Update()
     {
-        if (Health.goals >= 5) GameOver();
-#warning Zielzeiteingabe, wenn erreicht dann Level bestanden!
+        if (Timer.countdownOver)
+        {
+            if (Health.goals >= 5) GameOver();
+            timeElapsed += Time.deltaTime;
+            if (Settings.gameDuration + 1 <= timeElapsed) GameDone();
+        }
     }
 
     /// <summary>
     /// Sets game over for the tutorial
     /// </summary>
-    void GameOver()
+    private void GameOver()
     {
         gameOver = true;
-        Time.StopTimer();
+        Timer.StopTimer();
+        MissionInfo.SetGameOver();
     }
 
     /// <summary>
@@ -81,7 +88,8 @@ public class MissionController : MonoBehaviour
     private void GameDone()
     {
         gameDone = true;
-        Time.StopTimer();
+        Timer.StopTimer();
+        MissionInfo.SetGameDone();
     }
 
     /// <summary>
@@ -89,7 +97,6 @@ public class MissionController : MonoBehaviour
     /// </summary>
     public GameObject activateObject(int index = 0)
     {
-
         if (!objectGamePool[index].activeSelf) return objectGamePool[index];
 
         for (int i = 0; i < objectGamePool.Length; i++)
@@ -104,9 +111,9 @@ public class MissionController : MonoBehaviour
     /// </summary>
     IEnumerator Spawn()
     {
-        Time.StartCountdown(3);
+        Timer.StartCountdown(3);
         yield return new WaitForSeconds(3.0f);
-        Time.StartTimer();
+        Timer.StartTimer();
 
         while (!gameOver && !gameDone)
         {

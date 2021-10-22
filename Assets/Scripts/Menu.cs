@@ -1,10 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    /// <summary>
+    /// Text to manipulate the duration
+    /// </summary>
+    public static Text DurationText;
+
+    /// <summary>
+    /// Slider to set the duration of a game
+    /// </summary>
+    public static Slider DurationSlider;
+
     /// <summary>
     /// To know which game is choosen
     /// </summary>
@@ -25,6 +37,16 @@ public class Menu : MonoBehaviour
     /// As the majority of people use the right hand, the value is set to default 1 (right)
     /// </summary>
     public static int wrist = 1;
+
+    /// <summary>
+    /// Sets the time of how long a game should be played unitl its set as finished
+    /// </summary>
+    public static float timeToGame = 300f;
+
+    private void Awake()
+    {
+
+    }
 
     /// <summary>
     /// Starts the choosen game with choosen difficulty
@@ -108,5 +130,24 @@ public class Menu : MonoBehaviour
     {
         level = lvl;
         StartGameLevel();
+    }
+
+    /// <summary>
+    /// Sets the time via the slider
+    /// </summary>
+    public static void SetGameDuration()
+    {
+        DurationSlider = Component.FindObjectsOfType<Slider>().ToList().Find(x => x.name == "DurationSlider");
+        DurationText = Component.FindObjectsOfType<Text>().ToList().Find(x => x.name == "DurationText");
+
+        timeToGame = DurationSlider.value * 10;
+        int m = Mathf.FloorToInt(timeToGame / 60);
+        int s = (int)timeToGame % 60;
+        string t;
+        t = m < 10 ? "0" + m + ":" : m + ":";
+        t += s < 10 ? "0" + s : s.ToString();
+        DurationText.text = t;
+
+        Settings.gameDuration = timeToGame;
     }
 }
