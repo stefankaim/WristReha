@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public bool tutorial = false;
     private float tutorialTimer;
-    private float nextTutorial = 5f;
+    private float nextTutorial = 6f;
     private bool showed1 = false, showed2 = false, showed3 = false, showed4 = false, showed5 = false, showed6 = false;
 
     public MouseInput mouseInput;
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
                     else if (!showed2)
                     {
                         Tutorial.SetText("Pflanzen verletzen\nden Taucher nicht");
-                        nextTutorial = 4f;
+                        nextTutorial = 5f;
                         showed2 = true;
                     }
                     else if (!showed3)
