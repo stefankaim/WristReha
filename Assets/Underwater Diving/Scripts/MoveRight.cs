@@ -7,8 +7,11 @@ public class MoveRight : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float increaseSpeed = 3;
     public float speedMulti = 25f;
+    private bool stop = false;
 
     private Rigidbody2D mover;
+    public TimeCounter Timer;
+    public PlayerController playerController;
 
     private float speedTimer;
 
@@ -22,18 +25,32 @@ public class MoveRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speedTimer += Time.deltaTime;
-        if(speedTimer >= increaseSpeed)
+        if (Timer.countdownOver && !stop)
         {
-            speedTimer = 0;
-            moveSpeed += 0.1f;
+            speedTimer += Time.deltaTime;
+            if (speedTimer >= increaseSpeed)
+            {
+                speedTimer = 0;
+                moveSpeed += playerController.speedIncreaser;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        Vector2 move = new Vector2();
-        move.x = moveSpeed;
-        mover.velocity = move * Time.fixedDeltaTime * speedMulti;
+        if (Timer.countdownOver && !stop)
+        {
+            Vector2 move = new Vector2();
+            move.x = moveSpeed;
+            mover.velocity = move * Time.fixedDeltaTime * speedMulti;
+        }
+    }
+
+    /// <summary>
+    /// Stops the camera movement
+    /// </summary>
+    public void Stop()
+    {
+        stop = true;
     }
 }
