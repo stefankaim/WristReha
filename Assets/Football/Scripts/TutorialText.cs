@@ -15,6 +15,7 @@ public class TutorialText : MonoBehaviour
     {
         if (Game == 1) text.text = "";
         else if (Game == 2) text.text = "B‰lle fliegen auf\ndas Tor";
+        else if (Game == 3) text.text = "Pflanzen gieﬂen";
         timePassed = 0f;
     }
 
