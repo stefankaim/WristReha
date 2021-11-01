@@ -61,11 +61,8 @@ public class TimeCounter : MonoBehaviour
         int s = (int)time % 60;
         int m = Mathf.FloorToInt(time / 60);
         string t;
-        if (m < 10) t = "0" + m;
-        else t = m.ToString();
-        t += ":";
-        if (s < 10) t += "0" + s;
-        else t += s.ToString();
+        t = m < 10 ? "0" + m + ":" : m + ":";
+        t += s < 10 ? "0" + s : s.ToString();
         timerText.text = t;
     }
 

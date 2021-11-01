@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3702175637053602698}
   - component: {fileID: 1322860528547313535}
   - component: {fileID: 4797593789641287192}
-  - component: {fileID: 8397885533602091712}
   - component: {fileID: 1037721582853987256}
   - component: {fileID: 8225102540746543221}
   - component: {fileID: 6219483586939309202}
@@ -87,25 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8397885533602091712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8397885533602091715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6de0502154d28a449e0d2e13c0afe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTexture: {fileID: 2800000, guid: cc2041103aab3344e974d00da2fa90c6, type: 3}
-  MushroomTop: {fileID: 0}
-  MushroomBase: {fileID: 0}
-  normalStrength: 0
-  roughnessStrength: 0
-  baseStrength: 0
-  metallicStrength: 0
 --- !u!114 &1037721582853987256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +104,7 @@ MonoBehaviour:
   roughnessStrengthDead: 2.2
   baseStrengthDead: 0
   metallicStrengthDead: 1.2
+  counter: {fileID: 0}
 --- !u!64 &8225102540746543221
 MeshCollider:
   m_ObjectHideFlags: 0

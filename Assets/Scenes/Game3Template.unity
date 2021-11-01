@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22383714, g: 0.17886364, b: 0.20330286, a: 1}
+  m_IndirectSpecularColor: {r: 0.22376925, g: 0.17864132, b: 0.20270252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -508,6 +508,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2133964810}
     - target: {fileID: 2476071808612944537, guid: 4ce7cad5682baa9419dc1b38408f5bde, type: 3}
+      propertyPath: isTutorial
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476071808612944537, guid: 4ce7cad5682baa9419dc1b38408f5bde, type: 3}
       propertyPath: TutorialText
       value: 
       objectReference: {fileID: 1538594068}
@@ -601,6 +605,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3427951471666899581, guid: 58f1b620ae193d74cb107fad11bf7173, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3427951471944177343, guid: 58f1b620ae193d74cb107fad11bf7173, type: 3}
       propertyPath: gameController
       value: 

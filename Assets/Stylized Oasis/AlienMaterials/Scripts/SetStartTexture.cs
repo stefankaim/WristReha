@@ -15,15 +15,17 @@ public class SetStartTexture : MonoBehaviour
     private void Awake()
     {
         thisRenderer = GetComponent<Renderer>();
-        if (thisRenderer.gameObject.name.Contains("Mushroom"))
+        if (thisRenderer != null)
         {
-            MushroomTop.material.SetTexture("_MainTex", startTexture);
-            MushroomBase.material.SetTexture("_MainTex", startTexture);
+            if (thisRenderer.gameObject.name.Contains("Mushroom"))
+            {
+                MushroomTop.material.SetTexture("_MainTex", startTexture);
+                MushroomBase.material.SetTexture("_MainTex", startTexture);
+            }
+            else
+            {
+                thisRenderer.material.SetTexture("_MainTex", startTexture);
+            }
         }
-        else
-        {
-            thisRenderer.material.SetTexture("_MainTex", startTexture);
-        }
-
     }
 }
