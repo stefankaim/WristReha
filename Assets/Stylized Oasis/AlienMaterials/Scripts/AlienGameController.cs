@@ -20,11 +20,18 @@ public class AlienGameController : MonoBehaviour
     public RemainingWater RemainingWater;
     public GameObject waterParticles;
 
+    private ParticleSystem water;
+
+    private void Awake()
+    {
+        water = waterParticles.GetComponent<ParticleSystem>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         Timer.StartCountdown(3);
-        Timer.StartTimer();
+        //Timer.StartTimer();
     }
 
     // Update is called once per frame
@@ -55,7 +62,7 @@ public class AlienGameController : MonoBehaviour
     {
         Timer.StopTimer();
         gameOver = true;
-        waterParticles.SetActive(false);
+        water.Stop();
         InfoText.SetGameOver();
 
     }
@@ -67,7 +74,7 @@ public class AlienGameController : MonoBehaviour
     {
         Timer.StopTimer();
         gameDone = true;
-        waterParticles.SetActive(false);
+        water.Stop();
         InfoText.SetLevelDone();
     }
 }

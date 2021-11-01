@@ -22,7 +22,7 @@ public class RemainingWater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Timer.countdownOver)
+        if (Timer.countdownOver && !gameController.gameOver && !gameController.gameDone)
         {
             if (slider.value == slider.maxValue)
             {

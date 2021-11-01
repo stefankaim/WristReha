@@ -12,6 +12,9 @@ public class WaterCollision : MonoBehaviour
 
     private Renderer renderer;
 
+    public WateredPlantsCounter counter;
+    private bool watered = false;
+
     private void Awake()
     {
         renderer = GetComponent<Renderer>();
@@ -33,7 +36,7 @@ public class WaterCollision : MonoBehaviour
 
     private void Update()
     {
-        if (renderer != null)
+        if (renderer != null && !watered)
         {
             if (collisions >= collisionsNeeded)
             {
@@ -41,6 +44,8 @@ public class WaterCollision : MonoBehaviour
                 renderer.material.SetFloat("_RoughnessStrength", roughnessStrength);
                 renderer.material.SetFloat("_BaseStrength", baseStrength);
                 renderer.material.SetFloat("_MetallicStrength", metallicStrength);
+                watered = true;
+                counter.IncreaseWateredPlants();
             }
         }
     }

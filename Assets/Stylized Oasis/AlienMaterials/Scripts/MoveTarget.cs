@@ -10,6 +10,7 @@ public class MoveTarget : MonoBehaviour
     private Vector3 direction;
     private Camera camera;
     private Vector3 moveDirection = Vector3.zero;
+    public AlienGameController gameController;
 
     private void Awake()
     {
@@ -31,7 +32,7 @@ public class MoveTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Timer.countdownOver)
+        if (Timer.countdownOver && !gameController.gameDone && !gameController.gameOver)
         {
             Vector3 right = camera.transform.right;
 
