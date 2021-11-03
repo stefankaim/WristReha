@@ -33,5 +33,5 @@ MonoBehaviour:
   m_DisableRedundantEventsMerging: 0
   m_iOSSettings:
     m_MotionUsage:
-      m_Enabled: 0
+      m_Enabled: 1
       m_Description: 
