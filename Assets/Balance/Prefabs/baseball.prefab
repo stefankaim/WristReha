@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4870516506940589476}
   - component: {fileID: 8862560976406138161}
   - component: {fileID: 5034639088453199897}
+  - component: {fileID: 4981787459973334051}
   m_Layer: 0
   m_Name: baseball
   m_TagString: Untagged
@@ -116,3 +117,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &4981787459973334051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4553117381223452238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c845ef40a60eedb428aefbc4eef9117e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -38,13 +38,13 @@ public class BalanceGameController : MonoBehaviour
     private void Awake()
     {
         ball = GameBall.GetComponent<Rigidbody>();
-        nextForce = Random.Range(timeForce.x, timeForce.y);
-        nextForceIndicator.SetNextForceTime(nextForce);
     }
 
     private void Start()
     {
         Timer.StartCountdown(3);
+        nextForce = Random.Range(timeForce.x, timeForce.y);
+        nextForceIndicator.SetNextForceTime(nextForce);
     }
 
     // Update is called once per frame
@@ -58,7 +58,14 @@ public class BalanceGameController : MonoBehaviour
                 forceTimeElapsed = 0;
                 nextForce = Random.Range(timeForce.x, timeForce.y);
                 nextForceIndicator.SetNextForceTime(nextForce);
-                Vector3 randomForce = new Vector3(Random.Range(randomForceX.x, randomForceX.y), Random.Range(randomForceY.x, randomForceY.y), Random.Range(randomForceZ.x, randomForceZ.y));
+                Vector3 ranDir = new Vector3();
+                if (Random.value <= 0.5f) ranDir.x = -1f;
+                else ranDir.x = 1f;
+                if (Random.value <= 0.5f) ranDir.y = -1f;
+                else ranDir.y = 1f;
+                if (Random.value <= 0.5f) ranDir.z = -1f;
+                else ranDir.z = 1f;
+                Vector3 randomForce = new Vector3(ranDir.x * Random.Range(randomForceX.x, randomForceX.y), ranDir.y * Random.Range(randomForceY.x, randomForceY.y), ranDir.z * Random.Range(randomForceZ.x, randomForceZ.y));
                 ball.AddRelativeForce(randomForce, ForceMode.Impulse);
             }
 
