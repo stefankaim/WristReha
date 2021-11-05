@@ -66,8 +66,8 @@ public class InfoText : MonoBehaviour
         text.text = "Game Over!";
         text.enabled = true;
         gameOver = true;
-        ActivateReplayButton();
         ActivateMenuButton();
+        ActivateReplayButton();
     }
 
     /// <summary>
@@ -90,6 +90,7 @@ public class InfoText : MonoBehaviour
         buttonLevel.GetComponentInChildren<Text>().text = "Neu starten";
         buttonLevel.enabled = true;
         buttonLevel.gameObject.SetActive(true);
+        buttonLevel.Select();
     }
 
     /// <summary>
@@ -102,6 +103,7 @@ public class InfoText : MonoBehaviour
             buttonLevel.GetComponentInChildren<Text>().text = "Nächstes Level";
             buttonLevel.enabled = true;
             buttonLevel.gameObject.SetActive(true);
+            buttonLevel.Select();
         }
     }
 
@@ -112,6 +114,7 @@ public class InfoText : MonoBehaviour
     {
         buttonMenu.gameObject.SetActive(true);
         buttonMenu.enabled = true;
+        if (!nextSceneExists) buttonMenu.Select();
     }
 
     /// <summary>
