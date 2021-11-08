@@ -43,7 +43,6 @@ public class InfoText : MonoBehaviour
             }
 
         }
-        Debug.Log("NextSceneName: " + nextSceneName);
 
         List<string> scenesInBuild = new List<string>();
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
@@ -62,10 +61,13 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void SetGameOver()
     {
-        text.color = Color.red;
-        text.text = "Game Over!";
-        text.enabled = true;
-        gameOver = true;
+        if (text != null)
+        {
+            text.color = Color.red;
+            text.text = "Game Over!";
+            text.enabled = true;
+            gameOver = true;
+        }
         ActivateMenuButton();
         ActivateReplayButton();
     }
@@ -75,9 +77,12 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void SetLevelDone()
     {
-        text.color = Color.green;
-        text.text = "Level geschafft!";
-        text.enabled = true;
+        if (text != null)
+        {
+            text.color = Color.green;
+            text.text = "Level geschafft!";
+            text.enabled = true;
+        }
         ActivateNextLevelButton();
         ActivateMenuButton();
     }
@@ -87,10 +92,13 @@ public class InfoText : MonoBehaviour
     /// </summary>
     private void ActivateReplayButton()
     {
-        buttonLevel.GetComponentInChildren<Text>().text = "Neu starten";
-        buttonLevel.enabled = true;
-        buttonLevel.gameObject.SetActive(true);
-        buttonLevel.Select();
+        if (buttonLevel != null)
+        {
+            buttonLevel.GetComponentInChildren<Text>().text = "Neu starten";
+            buttonLevel.enabled = true;
+            buttonLevel.gameObject.SetActive(true);
+            buttonLevel.Select();
+        }
     }
 
     /// <summary>
@@ -98,7 +106,7 @@ public class InfoText : MonoBehaviour
     /// </summary>
     private void ActivateNextLevelButton()
     {
-        if (nextSceneExists)
+        if (nextSceneExists && buttonLevel != null)
         {
             buttonLevel.GetComponentInChildren<Text>().text = "Nächstes Level";
             buttonLevel.enabled = true;
@@ -112,9 +120,12 @@ public class InfoText : MonoBehaviour
     /// </summary>
     private void ActivateMenuButton()
     {
-        buttonMenu.gameObject.SetActive(true);
-        buttonMenu.enabled = true;
-        if (!nextSceneExists) buttonMenu.Select();
+        if (buttonMenu != null)
+        {
+            buttonMenu.enabled = true;
+            buttonMenu.gameObject.SetActive(true);
+            if (!nextSceneExists) buttonMenu.Select();
+        }
     }
 
     /// <summary>
@@ -122,7 +133,6 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void LevelButtonClicked()
     {
-        Debug.Log("LevelButtonClicked");
         if (gameOver) SceneManager.LoadScene(currentScene.buildIndex);
         else if (nextSceneExists) SceneManager.LoadScene(nextSceneName);
         else SceneManager.LoadScene(0);
@@ -133,7 +143,6 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void MenuButtonClicked()
     {
-        Debug.Log("MenuButtonClicked");
         SceneManager.LoadScene(0);
     }
 }

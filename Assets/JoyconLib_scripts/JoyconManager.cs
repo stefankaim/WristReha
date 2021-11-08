@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 using UnityEngine;
 using System;
-public class JoyconManager: MonoBehaviour
+public class JoyconManager : MonoBehaviour
 {
 
     // Settings accessible via Unity
@@ -42,46 +42,53 @@ public class JoyconManager: MonoBehaviour
         {
             ptr = HIDapi.hid_enumerate(vendor_id_, 0x0);
             if (ptr == IntPtr.Zero)
-            { 
+            {
                 HIDapi.hid_free_enumeration(ptr);
-                Debug.Log ("No Joy-Cons found!");
+                Debug.Log("No Joy-Cons found!");
             }
         }
         hid_device_info enumerate;
-        while (ptr != IntPtr.Zero) {
-            enumerate = (hid_device_info)Marshal.PtrToStructure (ptr, typeof(hid_device_info));
+        while (ptr != IntPtr.Zero)
+        {
+            enumerate = (hid_device_info)Marshal.PtrToStructure(ptr, typeof(hid_device_info));
 
-            Debug.Log (enumerate.product_id);
-                if (enumerate.product_id == product_l || enumerate.product_id == product_r) {
-                    if (enumerate.product_id == product_l) {
-                        isLeft = true;
-                        Debug.Log ("Left Joy-Con connected.");
-                    } else if (enumerate.product_id == product_r) {
-                        isLeft = false;
-                        Debug.Log ("Right Joy-Con connected.");
-                    } else {
-                        Debug.Log ("Non Joy-Con input device skipped.");
-                    }
-                    IntPtr handle = HIDapi.hid_open_path (enumerate.path);
-                    HIDapi.hid_set_nonblocking (handle, 1);
-                    j.Add (new Joycon (handle, EnableIMU, EnableLocalize & EnableIMU, 0.05f, isLeft));
-                    ++i;
+            Debug.Log(enumerate.product_id);
+            if (enumerate.product_id == product_l || enumerate.product_id == product_r)
+            {
+                if (enumerate.product_id == product_l)
+                {
+                    isLeft = true;
+                    Debug.Log("Left Joy-Con connected.");
                 }
-                ptr = enumerate.next;
+                else if (enumerate.product_id == product_r)
+                {
+                    isLeft = false;
+                    Debug.Log("Right Joy-Con connected.");
+                }
+                else
+                {
+                    Debug.Log("Non Joy-Con input device skipped.");
+                }
+                IntPtr handle = HIDapi.hid_open_path(enumerate.path);
+                HIDapi.hid_set_nonblocking(handle, 1);
+                j.Add(new Joycon(handle, EnableIMU, EnableLocalize & EnableIMU, 0.05f, isLeft));
+                ++i;
             }
-        HIDapi.hid_free_enumeration (top_ptr);
+            ptr = enumerate.next;
+        }
+        HIDapi.hid_free_enumeration(top_ptr);
     }
 
     void Start()
     {
         for (int i = 0; i < j.Count; ++i)
         {
-            Debug.Log (i);
-            Joycon jc = j [i];
+            Debug.Log(i);
+            Joycon jc = j[i];
             byte LEDs = 0x0;
             LEDs |= (byte)(0x1 << i);
-            jc.Attach (leds_: LEDs);
-            jc.Begin ();
+            jc.Attach(leds_: LEDs);
+            jc.Begin();
         }
     }
 
@@ -97,7 +104,7 @@ public class JoyconManager: MonoBehaviour
     {
         for (int i = 0; i < j.Count; ++i)
         {
-            j[i].Detach ();
+            j[i].Detach();
         }
     }
 }

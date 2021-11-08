@@ -64,7 +64,7 @@ public class Joycon
     private UInt16 deadzone;
     private UInt16[] stick_precal = { 0, 0 };
 
-    private bool stop_polling = false;
+    public bool stop_polling = false;
     private int timestamp;
     private bool first_imu_packet = true;
     private bool imu_enabled = false;

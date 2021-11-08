@@ -9,6 +9,7 @@ public class BalanceGameController : MonoBehaviour
     /// </summary>
     public GameObject GameBall;
     private Rigidbody ball;
+    public SpoonController spoon;
 
     public NextForceIndicator nextForceIndicator;
     public TimeCounter Timer;
@@ -65,8 +66,15 @@ public class BalanceGameController : MonoBehaviour
                 else ranDir.y = 1f;
                 if (Random.value <= 0.5f) ranDir.z = -1f;
                 else ranDir.z = 1f;
-                Vector3 randomForce = new Vector3(ranDir.x * Random.Range(randomForceX.x, randomForceX.y), ranDir.y * Random.Range(randomForceY.x, randomForceY.y), ranDir.z * Random.Range(randomForceZ.x, randomForceZ.y));
+                float forceX = Random.Range(randomForceX.x, randomForceX.y);
+                float forceY = Random.Range(randomForceY.x, randomForceY.y);
+                float forceZ = Random.Range(randomForceZ.x, randomForceZ.y);
+                Vector3 randomForce = new Vector3(ranDir.x * forceX, ranDir.y * forceY, ranDir.z * forceZ);
                 ball.AddRelativeForce(randomForce, ForceMode.Impulse);
+
+                Vector3 p = new Vector3(forceX / randomForceX.y, forceY / randomForceY.y, forceZ / randomForceZ.y);
+                float percent = (p.x + p.y + p.z) / 3;
+                spoon.RumbleJoyCon(percent);
             }
 
             if (isTutorial)
@@ -90,10 +98,10 @@ public class BalanceGameController : MonoBehaviour
     /// </summary>
     public void SetGameOver()
     {
+        spoon.StopPolling();
         Timer.StopTimer();
         gameOver = true;
         InfoText.SetGameOver();
-
     }
 
     /// <summary>
@@ -101,6 +109,7 @@ public class BalanceGameController : MonoBehaviour
     /// </summary>
     public void SetGameDone()
     {
+        spoon.StopPolling();
         Timer.StopTimer();
         gameDone = true;
         InfoText.SetLevelDone();
