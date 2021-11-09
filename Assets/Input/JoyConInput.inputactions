@@ -1,0 +1,46 @@
+{
+    "name": "JoyConInput",
+    "maps": [
+        {
+            "name": "Action",
+            "id": "537fdde3-139e-4ba8-b00d-54e59fbe4c67",
+            "actions": [
+                {
+                    "name": "ButtonY",
+                    "type": "Button",
+                    "id": "4b69e450-4878-4b79-872d-e3d58d48899c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "97e69a30-3e50-4f8a-bd44-df20796e149e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ButtonY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "JoyCon",
+            "bindingGroup": "JoyCon",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
