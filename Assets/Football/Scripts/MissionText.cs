@@ -44,7 +44,6 @@ public class MissionText : MonoBehaviour
             }
             else nextSceneName = "SceneShouldNotExist";
         }
-        Debug.Log("NextSceneName: " + nextSceneName);
 
         List<string> scenesInBuild = new List<string>();
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
@@ -56,8 +55,6 @@ public class MissionText : MonoBehaviour
 
         if (scenesInBuild.Contains(nextSceneName)) nextSceneExists = true;
         else nextSceneExists = false;
-
-        Debug.Log("NextSceneExists: " + nextSceneExists);
     }
 
     /// <summary>
@@ -65,9 +62,12 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void SetGameOver()
     {
-        text.color = Color.red;
-        text.text = "Game Over!";
-        text.enabled = true;
+        if (text != null)
+        {
+            text.color = Color.red;
+            text.text = "Game Over!";
+            text.enabled = true;
+        }
         gameOver = true;
         ActivateReplayButton();
         ActivateMenuButton();
@@ -78,9 +78,12 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void SetGameDone()
     {
-        text.color = Color.green;
-        text.text = "Level geschafft!";
-        text.enabled = true;
+        if (text != null)
+        {
+            text.color = Color.green;
+            text.text = "Level geschafft!";
+            text.enabled = true;
+        }
         gameDone = true;
         ActivateNextLevelButton();
         ActivateMenuButton();
@@ -91,9 +94,12 @@ public class MissionText : MonoBehaviour
     /// </summary>
     private void ActivateReplayButton()
     {
-        buttonLevel.GetComponentInChildren<Text>().text = "Neu starten";
-        buttonLevel.enabled = true;
-        buttonLevel.gameObject.SetActive(true);
+        if (buttonLevel != null)
+        {
+            buttonLevel.GetComponentInChildren<Text>().text = "Neu starten";
+            buttonLevel.enabled = true;
+            buttonLevel.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -103,9 +109,12 @@ public class MissionText : MonoBehaviour
     {
         if (nextSceneExists)
         {
-            buttonLevel.GetComponentInChildren<Text>().text = "Nächstes Level";
-            buttonLevel.enabled = true;
-            buttonLevel.gameObject.SetActive(true);
+            if (buttonLevel != null)
+            {
+                buttonLevel.GetComponentInChildren<Text>().text = "Nächstes Level";
+                buttonLevel.enabled = true;
+                buttonLevel.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -114,8 +123,11 @@ public class MissionText : MonoBehaviour
     /// </summary>
     private void ActivateMenuButton()
     {
-        buttonMenu.gameObject.SetActive(true);
-        buttonMenu.enabled = true;
+        if (buttonMenu != null)
+        {
+            buttonMenu.gameObject.SetActive(true);
+            buttonMenu.enabled = true;
+        }
     }
 
     /// <summary>
@@ -123,7 +135,6 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void LevelButtonClicked()
     {
-        Debug.Log("LevelButtonClicked");
         if (gameOver) SceneManager.LoadScene(currentScene.buildIndex);
         else if (nextSceneExists) SceneManager.LoadScene(nextSceneName);
         else SceneManager.LoadScene(0);
@@ -134,7 +145,6 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void MenuButtonClicked()
     {
-        Debug.Log("MenuButtonClicked");
         SceneManager.LoadScene(0);
     }
 }

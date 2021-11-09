@@ -7,17 +7,6 @@ public class BallController : MonoBehaviour
     public BalanceGameController gameController;
 
     /// <summary>
-    /// When the ball gets invisible the level ends
-    /// </summary>
-    void OnBecameInvisible()
-    {
-        if (!gameController.gameDone)
-        {
-            gameController.SetGameOver();
-        }
-    }
-
-    /// <summary>
     /// If the ball touches the ground or water, the game is also over
     /// </summary>
     /// <param name="collision">The collided object</param>

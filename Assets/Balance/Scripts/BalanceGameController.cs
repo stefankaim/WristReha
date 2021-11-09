@@ -13,8 +13,10 @@ public class BalanceGameController : MonoBehaviour
 
     public NextForceIndicator nextForceIndicator;
     public TimeCounter Timer;
-    public InfoText InfoText;
+    public MissionText InfoText;
     public TutorialText TutorialText;
+
+    public GameObject JoyConManager;
 
     /// <summary>
     /// Min and max time when the next wind force will be applied to the game ball (random between)
@@ -29,11 +31,13 @@ public class BalanceGameController : MonoBehaviour
 
     public bool gameOver, gameDone;
     public bool isTutorial = false;
+    private float timeForTutorial = 30f;
+    private float tutorialTimeElapsed = 0f;
 
     private float timeElapsed;
     private float timeUntilNextTutorial = 5f;
     private int tutorial = 0;
-    private string[] tutorialTexts = { "Controller auf/ab und\n rechts/links bewegen", "Den Ball nicht fallen lassen", "Der Balken rechts zeigt wann\n Kräfte auf den Ball wirken", "Das Spiel ist geschafft, wenn\nder Ball die eingestellte Zeit\nnicht am Boden fliegt" };
+    private string[] tutorialTexts = { "Controller auf/ab und\n rechts/links bewegen", "Den Ball nicht fallen lassen", "Der Balken rechts zeigt wann\n Kräfte auf den Ball wirken", "Das Spiel ist geschafft, wenn\nder Ball die eingestellte Zeit\nnicht am Boden fliegt", "Die Anleitung ist nach\n30 Sekunden geschafft" };
 
 
     private void Awake()
@@ -54,6 +58,8 @@ public class BalanceGameController : MonoBehaviour
         if (Timer.countdownOver && !gameOver && !gameDone)
         {
             forceTimeElapsed += Time.deltaTime;
+            timeElapsed += Time.deltaTime;
+
             if (forceTimeElapsed >= nextForce)
             {
                 forceTimeElapsed = 0;
@@ -79,7 +85,7 @@ public class BalanceGameController : MonoBehaviour
 
             if (isTutorial)
             {
-                timeElapsed += Time.deltaTime;
+                tutorialTimeElapsed += Time.deltaTime;
                 if (timeElapsed >= timeUntilNextTutorial)
                 {
                     if (tutorialTexts.Length > tutorial)
@@ -89,6 +95,11 @@ public class BalanceGameController : MonoBehaviour
                         tutorial++;
                     }
                 }
+                if (tutorialTimeElapsed >= timeForTutorial) SetGameDone();
+            }
+            else
+            {
+                if (Settings.gameDuration + 1 <= timeElapsed) SetGameDone();
             }
         }
     }
@@ -98,7 +109,9 @@ public class BalanceGameController : MonoBehaviour
     /// </summary>
     public void SetGameOver()
     {
+        spoon.RumbleJoyCon(0);
         spoon.StopPolling();
+        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameOver = true;
         InfoText.SetGameOver();
@@ -109,9 +122,11 @@ public class BalanceGameController : MonoBehaviour
     /// </summary>
     public void SetGameDone()
     {
+        spoon.RumbleJoyCon(0);
         spoon.StopPolling();
+        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameDone = true;
-        InfoText.SetLevelDone();
+        InfoText.SetGameDone();
     }
 }

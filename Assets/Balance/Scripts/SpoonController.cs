@@ -40,6 +40,11 @@ public class SpoonController : MonoBehaviour
 
     private void Update()
     {
+
+    }
+
+    private void FixedUpdate()
+    {
         if (Timer.countdownOver && !gameController.gameOver && !gameController.gameDone)
         {
             #region MouseMovement

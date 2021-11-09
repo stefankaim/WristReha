@@ -770,7 +770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9084783081666685447}
-  - component: {fileID: 9084783081666685444}
+  - component: {fileID: 7630946320724282660}
   m_Layer: 5
   m_Name: GameInfo
   m_TagString: Untagged
@@ -801,7 +801,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 458.5646, y: 369.4506}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &9084783081666685444
+--- !u!114 &7630946320724282660
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -810,12 +810,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 9084783081666685446}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a459a5c46298844f8d08e98448c7345, type: 3}
+  m_Script: {fileID: 11500000, guid: 93383ab2018a4c94e9a0192e2c62111e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 9084783081641081633}
   buttonLevel: {fileID: 9084783081994481051}
   buttonMenu: {fileID: 9084783082021612400}
+  gameOver: 0
+  gameDone: 0
 --- !u!1 &9084783081944330082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,8 +1132,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9084783081666685444}
-        m_TargetAssemblyTypeName: InfoText, Assembly-CSharp
+      - m_Target: {fileID: 7630946320724282660}
+        m_TargetAssemblyTypeName: MissionText, Assembly-CSharp
         m_MethodName: LevelButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -1264,8 +1266,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9084783081666685444}
-        m_TargetAssemblyTypeName: InfoText, Assembly-CSharp
+      - m_Target: {fileID: 7630946320724282660}
+        m_TargetAssemblyTypeName: MissionText, Assembly-CSharp
         m_MethodName: MenuButtonClicked
         m_Mode: 1
         m_Arguments:

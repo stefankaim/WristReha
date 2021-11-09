@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3098569, g: 0.21536255, b: 0.20920753, a: 1}
+  m_IndirectSpecularColor: {r: 0.30986166, g: 0.21535492, b: 0.20920086, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -571,15 +571,27 @@ PrefabInstance:
       objectReference: {fileID: 1279372828}
     - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
       propertyPath: randomForceX.x
-      value: 0
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
+      propertyPath: randomForceX.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
       propertyPath: randomForceY.x
-      value: 0
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
+      propertyPath: randomForceY.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
       propertyPath: randomForceZ.x
-      value: 0
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
+      propertyPath: randomForceZ.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1715647962681945665, guid: 3e1f7ac00b9e7514d9208f29aeb70de9, type: 3}
       propertyPath: nextForceIndicator
@@ -874,7 +886,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4047414871805451101, guid: c3a03e8eec84c1f44968587e88eef75a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4047414871805451101, guid: c3a03e8eec84c1f44968587e88eef75a, type: 3}
       propertyPath: m_LocalPosition.x
