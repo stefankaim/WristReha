@@ -1,0 +1,54 @@
+{
+    "name": "SprinkleMover",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "d4709572-21de-4e58-9d5b-6672fc5d2893",
+            "actions": [
+                {
+                    "name": "deltaX",
+                    "type": "Value",
+                    "id": "7d1c5469-29f6-4790-9826-67aa2c3d5c84",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "deltaY",
+                    "type": "Value",
+                    "id": "ff9fedf9-a90e-47a3-8bbe-90732c49125b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bd9de8cc-254c-4f20-a5ab-87528faf55ab",
+                    "path": "<Mouse>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "deltaX",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d38b30c-acf5-4e01-8dc7-ce46a2b43052",
+                    "path": "<Mouse>/delta/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "deltaY",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
