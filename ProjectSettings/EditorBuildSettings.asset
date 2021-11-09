@@ -41,5 +41,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game3Level3.unity
     guid: f65d4032f112c834faf7ab6d6e8efee5
+  - enabled: 1
+    path: Assets/Scenes/Game4Tutorial.unity
+    guid: cb9aebc581a596d4f9de5366389aaf38
+  - enabled: 1
+    path: Assets/Scenes/Game4Easy.unity
+    guid: 8224642a15f6916438132cd12c63ee91
+  - enabled: 1
+    path: Assets/Scenes/Game4Medium.unity
+    guid: 586b1f25771bdd644b66903a3bb7270c
+  - enabled: 1
+    path: Assets/Scenes/Game4Hard.unity
+    guid: a1b94f02efd5e5e409b8da5c805aff58
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 40be42581fe3947178d8baf6822c4bf5, type: 2}
