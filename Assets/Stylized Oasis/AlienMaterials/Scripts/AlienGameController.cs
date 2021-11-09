@@ -19,6 +19,7 @@ public class AlienGameController : MonoBehaviour
     public TutorialText TutorialText;
     public RemainingWater RemainingWater;
     public GameObject waterParticles;
+    public MoveTarget playerController;
 
     private ParticleSystem water;
 
@@ -60,6 +61,7 @@ public class AlienGameController : MonoBehaviour
     /// </summary>
     public void SetGameOver()
     {
+        if (playerController != null) playerController.StopPolling();
         Timer.StopTimer();
         gameOver = true;
         water.Stop();
@@ -72,9 +74,18 @@ public class AlienGameController : MonoBehaviour
     /// </summary>
     public void SetGameDone()
     {
+        if (playerController != null) playerController.StopPolling();
         Timer.StopTimer();
         gameDone = true;
         water.Stop();
         InfoText.SetLevelDone();
+    }
+
+    /// <summary>
+    /// Sets the rumble when a new plant is watered
+    /// </summary>
+    public void PlantWatered()
+    {
+        if (playerController != null) playerController.RumbleJoyCon();
     }
 }

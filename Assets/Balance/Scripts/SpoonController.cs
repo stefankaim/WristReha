@@ -104,10 +104,12 @@ public class SpoonController : MonoBehaviour
     public IEnumerator StopPolling()
     {
         activeJoycon.Detach();
-        //activeJoycon.stop_polling = true;
         yield return joyconWaiter();
     }
 
+    /// <summary>
+    /// Waits until the JoyCon is disconnected
+    /// </summary>
     IEnumerator joyconWaiter()
     {
         yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);

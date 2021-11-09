@@ -29,6 +29,7 @@ public class Tutorial : MonoBehaviour
     public TimeCounter Time;
     public TutorialText TuText;
     public MissionText MissionInfo;
+    public CatcherController catcherController;
 
     /// <summary>
     /// Use this for initialization.
@@ -83,10 +84,11 @@ public class Tutorial : MonoBehaviour
     /// <summary>
     /// Sets game over for the tutorial
     /// </summary>
-    void GameOver()
+    private void GameOver()
     {
         //TuText.SetText("Schade!\nMehr als 5 Tore bekommen");
-        TuText.SetText("");
+        if (TuText != null) TuText.SetText("");
+        if (catcherController != null) catcherController.StopControl();
         gameOver = true;
         Time.StopTimer();
         MissionInfo.SetGameOver();
@@ -98,7 +100,8 @@ public class Tutorial : MonoBehaviour
     private void GameDone()
     {
         //TuText.SetText("Super!\n6 Bälle gehalten");
-        TuText.SetText("");
+        if (TuText != null) TuText.SetText("");
+        if (catcherController != null) catcherController.StopControl();
         gameDone = true;
         Time.StopTimer();
         MissionInfo.SetGameDone();

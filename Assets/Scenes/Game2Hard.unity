@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: Health
       value: 
       objectReference: {fileID: 1213497487}
+    - target: {fileID: 4982005364383477660, guid: d7b4988c56fb5ec48bfb08f28fd7e098, type: 3}
+      propertyPath: catcher
+      value: 
+      objectReference: {fileID: 1702229938}
     - target: {fileID: 6999489608754094462, guid: d7b4988c56fb5ec48bfb08f28fd7e098, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -385,6 +389,7 @@ MonoBehaviour:
   Catched: {fileID: 1213497486}
   Timer: {fileID: 1213497485}
   MissionInfo: {fileID: 1213497488}
+  catcherController: {fileID: 1702229938}
 --- !u!4 &157937608
 Transform:
   m_ObjectHideFlags: 0
@@ -587,6 +592,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d03c1eda3160bd4bb70c4c7e3c405ab, type: 3}
+--- !u!1 &615213545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615213547}
+  - component: {fileID: 615213546}
+  m_Layer: 0
+  m_Name: JoyConManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &615213546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615213545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405bad29b2b998c408059182c189d9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableIMU: 1
+  EnableLocalize: 1
+--- !u!4 &615213547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615213545}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.7626204, y: 9.988572, z: -8.559823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1213497484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,12 +1033,27 @@ PrefabInstance:
       propertyPath: MissionInfo
       value: 
       objectReference: {fileID: 1213497488}
+    - target: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+      propertyPath: JoyConManager
+      value: 
+      objectReference: {fileID: 615213545}
     - target: {fileID: 11482084, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
       propertyPath: Catcher
       value: 
       objectReference: {fileID: 1213497486}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+--- !u!114 &1702229938 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+  m_PrefabInstance: {fileID: 1702229937}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6500cac739b1ee498b162e628a1e4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1762228271
 GameObject:
   m_ObjectHideFlags: 0

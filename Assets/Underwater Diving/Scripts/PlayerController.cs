@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private float speedTimer;
     public float increaseSpeed = 3f;
     public float movementY;
-    public float speedMulti = 25f;
+    public float speed = 25f;
     public float speedDecreaser = 0f;
     private float speedDecreaseTimer;
     private float speedDecreaseTime;
@@ -35,11 +35,21 @@ public class PlayerController : MonoBehaviour
     public MoveRight CamMover;
     public InfoText info;
 
+    public GameObject JoyConManager;
+    private List<Joycon> joycons;
+    private Joycon activeJoycon;
+    public float[] stick;
+    public Vector3 gyro;
+    public Vector3 accel;
+    public int jc_ind = 0;
+
     void Awake()
     {
-        mouseInput = new MouseInput();
-        mouseInput.Player.Move.performed += ctx => MoveY(ctx.ReadValue<float>());
-        mouseInput.Player.Move.canceled += ctx => MoveY(0);
+        #region MouseInput
+        //mouseInput = new MouseInput();
+        //mouseInput.Player.Move.performed += ctx => MoveY(ctx.ReadValue<float>());
+        //mouseInput.Player.Move.canceled += ctx => MoveY(0);
+        #endregion
     }
 
     void Start()
@@ -47,6 +57,17 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         swim = GetComponent<Animator>();
         speedTimer = 0;
+        gyro = new Vector3(0, 0, 0);
+        accel = new Vector3(0, 0, 0);
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count < jc_ind + 1)
+        {
+            Debug.LogError("Could not find connected Joy-Con!");
+        }
+        else
+        {
+            activeJoycon = joycons[jc_ind];
+        }
         Timer.StartCountdown(3);
     }
 
@@ -119,15 +140,24 @@ public class PlayerController : MonoBehaviour
     {
         if (Timer.countdownOver && !gameOver && !gameDone)
         {
-            Vector2 move = new Vector2();
-            move.x = moveSpeed - speedDecreaser;
-            move.y = movementY * 5f;
-            player.velocity = move * Time.fixedDeltaTime * speedMulti;
+            if (activeJoycon != null)
+            {
+                gyro = activeJoycon.GetGyro();
 
-            swim.SetFloat("Speed", Mathf.Abs(player.velocity.x));
+                Vector2 move = new Vector2();
+                move.x = moveSpeed - speedDecreaser;
+                #region MouseInput
+                //move.y = movementY * 5f;
+                #endregion
+                move.y = gyro.y * 5f;
+                player.velocity = move * Time.fixedDeltaTime * speed;
+
+                swim.SetFloat("Speed", Mathf.Abs(player.velocity.x));
+            }
         }
     }
 
+    #region MouseInput
     /// <summary>
     /// Moves the diver up and down
     /// </summary>
@@ -147,7 +177,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
-        mouseInput.Enable();
+        //mouseInput.Enable();
     }
 
     /// <summary>
@@ -155,8 +185,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void OnDisable()
     {
-        mouseInput.Disable();
+        //mouseInput.Disable();
     }
+    #endregion
 
     /// <summary>
     /// When the diver touches a mine or a fish
@@ -173,7 +204,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!gameDone)
         {
-            if (tutorial) Tutorial.SetText("");
+            if (tutorial && Tutorial != null) Tutorial.SetText("");
+            RumbleJoyCon(0, 0);
+            StopPolling();
+            if (JoyConManager != null) JoyConManager.SetActive(false);
             Timer.StopTimer();
             CamMover.Stop();
             gameOver = true;
@@ -189,7 +223,10 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("EndOfLevel") || collision.gameObject.name.Contains("SkipTutorial"))
         {
-            if (tutorial) Tutorial.SetText("");
+            if (tutorial && Tutorial != null) Tutorial.SetText("");
+            RumbleJoyCon(0, 0);
+            StopPolling();
+            if (JoyConManager != null) JoyConManager.SetActive(false);
             Timer.StopTimer();
             CamMover.Stop();
             gameDone = true;
@@ -238,6 +275,38 @@ public class PlayerController : MonoBehaviour
             speedDecreaseTime = 2f;
             speedDecreaseTimer = 0f;
         }
+
+        RumbleJoyCon(speedDecreaser + 0.2f, speedDecreaseTime);
         Debug.Log("speedDecreaser: " + speedDecreaser);
+    }
+
+    /// <summary>
+    /// Rumble the controller
+    /// Low: 160Hz, High: 320Hz
+    /// Amplitude: percent * 0.6
+    /// </summary>
+    /// <param name="percent">Percent of the force on the ball</param>
+    /// <param name="time">The time the controller should rumble * 100ms</param>
+    public void RumbleJoyCon(float percent, float time)
+    {
+        percent = Mathf.Clamp(percent, 0, 1);
+        activeJoycon.SetRumble(160, 320, percent * 0.6f, (int)(time * 100));
+    }
+
+    /// <summary>
+    /// Stops reading from the controller without disconnecting
+    /// </summary>
+    public IEnumerator StopPolling()
+    {
+        activeJoycon.Detach();
+        yield return joyconWaiter();
+    }
+
+    /// <summary>
+    /// Waits until the JoyCon is disconnected
+    /// </summary>
+    IEnumerator joyconWaiter()
+    {
+        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 }

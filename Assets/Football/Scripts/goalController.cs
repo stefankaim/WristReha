@@ -6,6 +6,7 @@ using System.Collections;
 public class goalController : MonoBehaviour
 {
     public GoalCounter Health;
+    public CatcherController catcher;
 
     /// <summary>
     /// Triggered when a goal is scored
@@ -19,6 +20,7 @@ public class goalController : MonoBehaviour
             {
                 Health.GotGoal();
                 GetComponent<AudioSource>().Play();
+                catcher.RumbleJoyCon(1f);
             }
             other.gameObject.SetActive(false);
         }

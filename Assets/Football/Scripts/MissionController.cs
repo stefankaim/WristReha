@@ -30,6 +30,7 @@ public class MissionController : MonoBehaviour
     public CatchCounter Catched;
     public TimeCounter Timer;
     public MissionText MissionInfo;
+    public CatcherController catcherController;
 
     /// <summary>
     /// Use this for initialization.
@@ -77,6 +78,7 @@ public class MissionController : MonoBehaviour
     /// </summary>
     private void GameOver()
     {
+        if (catcherController != null) catcherController.StopControl();
         gameOver = true;
         Timer.StopTimer();
         MissionInfo.SetGameOver();
@@ -87,6 +89,7 @@ public class MissionController : MonoBehaviour
     /// </summary>
     private void GameDone()
     {
+        if (catcherController != null) catcherController.StopControl();
         gameDone = true;
         Timer.StopTimer();
         MissionInfo.SetGameDone();

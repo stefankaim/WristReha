@@ -19,6 +19,7 @@ public class WateredPlantsCounter : MonoBehaviour
     /// </summary>
     public void IncreaseWateredPlants()
     {
+        if (gameController != null) gameController.PlantWatered();
         plantsWatered++;
         text.text = plantsWatered + " / " + plantsToWater;
     }
