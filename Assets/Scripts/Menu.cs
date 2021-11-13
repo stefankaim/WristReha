@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 public class Menu : MonoBehaviour
 {
@@ -43,9 +46,33 @@ public class Menu : MonoBehaviour
     /// </summary>
     public static float timeToGame = 300f;
 
+    /// <summary>
+    /// Information about the connected JoyCon
+    /// </summary>
+    public GameObject JoyConManager;
+    private List<Joycon> joycons;
+    private Joycon activeJoycon;
+    private int jc_ind = 0;
+    public TMPro.TextMeshProUGUI conn;
+
     private void Awake()
     {
 
+    }
+
+    private void Start()
+    {
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count < jc_ind + 1)
+        {
+            conn.text = "Kein JoyCon gefunden";
+        }
+        else
+        {
+            activeJoycon = joycons[jc_ind];
+            if (activeJoycon.isLeft) conn.text = "Linker JoyCon verbunden";
+            else conn.text = "Rechter JoyCon verbunden";
+        }
     }
 
     /// <summary>
@@ -83,9 +110,10 @@ public class Menu : MonoBehaviour
     /// <summary>
     /// Closes the application
     /// </summary>
-    public static void QuitGame()
+    public void QuitGame()
     {
         Debug.Log("Quit!");
+        if (activeJoycon != null) activeJoycon.Detach();
         Application.Quit();
     }
 
@@ -149,5 +177,31 @@ public class Menu : MonoBehaviour
         DurationText.text = t;
 
         Settings.gameDuration = timeToGame;
+    }
+
+    /// <summary>
+    /// Opens the bluetooth menu of the computer
+    /// </summary>
+    public static void OpenBluetoothConnection()
+    {
+        Process.Start("control", "bthprops.cpl");
+    }
+
+    /// <summary>
+    /// Refreshes the Text for the connected JoyCon
+    /// </summary>
+    public void RefreshControllerText()
+    {
+        joycons = JoyconManager.Instance.j;
+        if (joycons.Count < jc_ind + 1)
+        {
+            conn.text = "Kein JoyCon gefunden";
+        }
+        else
+        {
+            activeJoycon = joycons[jc_ind];
+            if (activeJoycon.isLeft) conn.text = "Linker JoyCon verbunden";
+            else conn.text = "Rechter JoyCon verbunden";
+        }
     }
 }

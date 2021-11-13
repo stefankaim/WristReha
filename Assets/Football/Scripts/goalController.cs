@@ -20,7 +20,7 @@ public class goalController : MonoBehaviour
             {
                 Health.GotGoal();
                 GetComponent<AudioSource>().Play();
-                catcher.RumbleJoyCon(1f);
+                if (Health.goals < Health.maxGoals) catcher.RumbleJoyCon(1f);
             }
             other.gameObject.SetActive(false);
         }

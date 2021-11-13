@@ -7,6 +7,7 @@ public class GoalCounter : MonoBehaviour
 {
     public Image Lost1, Lost2, Lost3, Lost4, Lost5;
     public int goals = 0;
+    public int maxGoals = 5;
 
     private void Awake()
     {

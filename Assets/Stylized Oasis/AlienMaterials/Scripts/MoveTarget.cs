@@ -8,7 +8,7 @@ public class MoveTarget : MonoBehaviour
 
     private SprinkleMover Mover;
     private Vector3 direction;
-    private Camera camera;
+    private new Camera camera;
     private Vector3 moveDirection = Vector3.zero;
     public AlienGameController gameController;
 

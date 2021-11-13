@@ -223,8 +223,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("EndOfLevel") || collision.gameObject.name.Contains("SkipTutorial"))
         {
-            if (tutorial && Tutorial != null) Tutorial.SetText("");
             RumbleJoyCon(0, 0);
+            if (tutorial && Tutorial != null) Tutorial.SetText("");
             StopPolling();
             if (JoyConManager != null) JoyConManager.SetActive(false);
             Timer.StopTimer();
