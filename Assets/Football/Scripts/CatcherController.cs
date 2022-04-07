@@ -57,6 +57,8 @@ public class CatcherController : MonoBehaviour
         else
         {
             activeJoycon = joycons[jc_ind];
+            //activeJoycon.Begin();
+            activeJoycon.Recenter();
         }
     }
 
@@ -93,9 +95,9 @@ public class CatcherController : MonoBehaviour
     /// </summary>
     public void StopControl()
     {
-        RumbleJoyCon(0);
-        StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
+        //RumbleJoyCon(0);
+        //StopPolling();
+        //if (JoyConManager != null) JoyConManager.SetActive(false);
     }
 
     /// <summary>

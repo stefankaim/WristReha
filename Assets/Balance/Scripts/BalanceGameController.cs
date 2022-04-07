@@ -47,7 +47,7 @@ public class BalanceGameController : MonoBehaviour
 
     private void Start()
     {
-        Timer.StartCountdown(3);
+        Timer.StartCountdown(5);
         nextForce = Random.Range(timeForce.x, timeForce.y);
         nextForceIndicator.SetNextForceTime(nextForce);
     }

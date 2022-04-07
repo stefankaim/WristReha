@@ -5,6 +5,15 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     public BalanceGameController gameController;
+    public TimeCounter Timer;
+
+    private void FixedUpdate()
+    {
+        if (Timer.countdownOver)
+        {
+            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
 
     /// <summary>
     /// If the ball touches the ground or water, the game is also over

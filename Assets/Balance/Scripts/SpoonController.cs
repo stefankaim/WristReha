@@ -35,6 +35,7 @@ public class SpoonController : MonoBehaviour
         else
         {
             activeJoycon = joycons[jc_ind];
+            activeJoycon.Recenter();
         }
     }
 
@@ -45,7 +46,7 @@ public class SpoonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Timer.countdownOver && !gameController.gameOver && !gameController.gameDone)
+        if (/*Timer.countdownOver && */!gameController.gameOver && !gameController.gameDone)
         {
             #region MouseMovement
             //Vector2 input = new Vector2(Mover.Move.deltaX.ReadValue<float>(), Mover.Move.deltaY.ReadValue<float>());
@@ -64,7 +65,7 @@ public class SpoonController : MonoBehaviour
                 #endregion
 
                 transform.rotation = ConvertToGame(activeJoycon.GetVector());
-                transform.Rotate(100, 0, 0);
+                transform.Rotate(97, 0, 0);
             }
         }
     }

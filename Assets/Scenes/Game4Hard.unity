@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.30986166, g: 0.21535492, b: 0.20920086, a: 1}
+  m_IndirectSpecularColor: {r: 0.30985975, g: 0.2153616, b: 0.20776176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 1675691165}
+  Timer: {fileID: 1439030409939255266}
 --- !u!1 &220685397 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4047414871805451102, guid: c3a03e8eec84c1f44968587e88eef75a, type: 3}
@@ -217,7 +218,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8143098508827469072, guid: d4ac9db72cbfe444681132a5bd1a2ae1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4ac9db72cbfe444681132a5bd1a2ae1, type: 3}
 --- !u!1001 &987445421
 PrefabInstance:
