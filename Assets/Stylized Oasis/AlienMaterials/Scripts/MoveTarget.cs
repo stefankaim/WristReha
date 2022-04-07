@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveTarget : MonoBehaviour
 {
     public TimeCounter Timer;
+    public PauseMenu PauseMenu;
 
     private SprinkleMover Mover;
     private Vector3 direction;
@@ -20,6 +21,9 @@ public class MoveTarget : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
     public Quaternion orientation;
+
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
 
 
     private void Awake()
@@ -69,6 +73,16 @@ public class MoveTarget : MonoBehaviour
             gyro = activeJoycon.GetGyro();
             Vector2 input = new Vector2(gyro.z, gyro.y);
             transform.position += (Vector3.up * input.y + right * input.x) * Time.deltaTime * speed;
+
+            pauseCooldownElapsed += Time.deltaTime;
+            if (pauseCooldown <= pauseCooldownElapsed)
+            {
+                if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+                {
+                    PauseMenu.Pause(activeJoycon);
+                    pauseCooldownElapsed = 0;
+                }
+            }
         }
     }
 

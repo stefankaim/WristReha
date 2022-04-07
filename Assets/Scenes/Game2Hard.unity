@@ -783,6 +783,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93383ab2018a4c94e9a0192e2c62111e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1213497489 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3461990629775581709, guid: fe91759ec62180944ac1bda115da320a, type: 3}
+  m_PrefabInstance: {fileID: 1213497484}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9733460a244cfb42b39d00e43bdd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1285593556
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1029,6 +1040,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 1213497485}
+    - target: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1213497489}
     - target: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
       propertyPath: MissionInfo
       value: 

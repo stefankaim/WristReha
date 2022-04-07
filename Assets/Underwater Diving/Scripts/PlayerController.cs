@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
 
+    public PauseMenu PauseMenu;
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
+
+
+
     void Awake()
     {
         #region MouseInput
@@ -131,6 +137,15 @@ public class PlayerController : MonoBehaviour
                         Tutorial.SetText("Luftblasen zeigen\ndas Ende des Levels");
                         showed6 = true;
                     }
+                }
+            }
+            pauseCooldownElapsed += Time.deltaTime;
+            if (pauseCooldown <= pauseCooldownElapsed)
+            {
+                if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+                {
+                    PauseMenu.Pause(activeJoycon);
+                    pauseCooldownElapsed = 0;
                 }
             }
         }

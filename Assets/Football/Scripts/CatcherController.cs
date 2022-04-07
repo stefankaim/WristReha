@@ -14,6 +14,7 @@ public class CatcherController : MonoBehaviour
     public Camera cam;
     public TimeCounter Timer;
     public MissionText MissionInfo;
+    public PauseMenu PauseMenu;
 
     public GameObject JoyConManager;
     private List<Joycon> joycons;
@@ -22,6 +23,9 @@ public class CatcherController : MonoBehaviour
     public Vector3 gyro;
     public Vector3 accel;
     public int jc_ind = 0;
+
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
 
     void Awake()
     {
@@ -59,6 +63,19 @@ public class CatcherController : MonoBehaviour
             activeJoycon = joycons[jc_ind];
             //activeJoycon.Begin();
             activeJoycon.Recenter();
+        }
+    }
+
+    private void Update()
+    {
+        pauseCooldownElapsed += Time.deltaTime;
+        if (pauseCooldown <= pauseCooldownElapsed)
+        {
+            if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+            {
+                PauseMenu.Pause(activeJoycon);
+                pauseCooldownElapsed = 0;
+            }
         }
     }
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22377521, g: 0.17852688, b: 0.20232916, a: 1}
+  m_IndirectSpecularColor: {r: 0.22382563, g: 0.17876434, b: 0.2029326, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -416,6 +416,17 @@ Transform:
   m_Father: {fileID: 1107761572}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &408941228 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349822073933452168, guid: 58f1b620ae193d74cb107fad11bf7173, type: 3}
+  m_PrefabInstance: {fileID: 2037525234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9733460a244cfb42b39d00e43bdd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &438580095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1144,6 +1155,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 2037525239}
+    - target: {fileID: 3035012528704634293, guid: bce05cfdfd1fd2d4fa305034c6188d85, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 408941228}
     - target: {fileID: 3035012528704634293, guid: bce05cfdfd1fd2d4fa305034c6188d85, type: 3}
       propertyPath: gameController
       value: 

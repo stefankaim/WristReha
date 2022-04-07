@@ -8,6 +8,7 @@ public class SpoonController : MonoBehaviour
     public float rotationSpeedLeftRight = 20f;
     public TimeCounter Timer;
     public BalanceGameController gameController;
+    public PauseMenu PauseMenu;
 
 
     private List<Joycon> joycons;
@@ -17,6 +18,9 @@ public class SpoonController : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
     public Quaternion orientation;
+
+    private float pauseCooldown = 0.25f;
+    private float pauseCooldownElapsed = 0;
 
     private void Awake()
     {
@@ -41,12 +45,20 @@ public class SpoonController : MonoBehaviour
 
     private void Update()
     {
-
+        pauseCooldownElapsed += Time.deltaTime;
+        if (pauseCooldown <= pauseCooldownElapsed)
+        {
+            if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+            {
+                PauseMenu.Pause(activeJoycon);
+                pauseCooldownElapsed = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        if (/*Timer.countdownOver && */!gameController.gameOver && !gameController.gameDone)
+        if (!gameController.gameOver && !gameController.gameDone)
         {
             #region MouseMovement
             //Vector2 input = new Vector2(Mover.Move.deltaX.ReadValue<float>(), Mover.Move.deltaY.ReadValue<float>());
