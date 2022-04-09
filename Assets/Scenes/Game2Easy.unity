@@ -1223,10 +1223,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6520732490574587745, guid: fe91759ec62180944ac1bda115da320a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7729144620003664339, guid: fe91759ec62180944ac1bda115da320a, type: 3}
       propertyPath: m_Name
       value: FootballUI
