@@ -16,11 +16,14 @@ public class goalController : MonoBehaviour
     {
         if (other != null)
         {
-            if (other.name.Contains("ball"))
+            if (!catcher.MissionInfo.gameOver && !catcher.MissionInfo.gameDone)
             {
-                Health.GotGoal();
-                GetComponent<AudioSource>().Play();
-                if (Health.goals < Health.maxGoals) catcher.RumbleJoyCon(1f);
+                if (other.name.Contains("ball"))
+                {
+                    Health.GotGoal();
+                    GetComponent<AudioSource>().Play();
+                    if (Health.goals < Health.maxGoals) catcher.RumbleJoyCon(1f);
+                }
             }
             other.gameObject.SetActive(false);
         }
