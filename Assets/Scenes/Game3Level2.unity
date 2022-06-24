@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22377521, g: 0.17852688, b: 0.20232916, a: 1}
+  m_IndirectSpecularColor: {r: 0.22282684, g: 0.17497742, b: 0.19343114, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 2846720757017412575, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
+      propertyPath: collisionsNeeded
+      value: 260
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
 --- !u!4 &72433956 stripped
@@ -294,6 +298,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 8320723144687964434, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
+      propertyPath: collisionsNeeded
+      value: 160
+      objectReference: {fileID: 0}
     - target: {fileID: 8691643562242225550, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
       propertyPath: m_Name
       value: AlienMushroom
@@ -608,6 +616,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 8320723144687964434, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
+      propertyPath: collisionsNeeded
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 8691643562242225550, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
       propertyPath: m_Name
       value: AlienMushroom
@@ -619,6 +631,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3702175637053602698, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
   m_PrefabInstance: {fileID: 1446061601}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &412770852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349822073933452168, guid: 58f1b620ae193d74cb107fad11bf7173, type: 3}
+  m_PrefabInstance: {fileID: 1290889081}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9733460a244cfb42b39d00e43bdd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &456173055
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +807,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 8320723144687964434, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
+      propertyPath: collisionsNeeded
+      value: 190
+      objectReference: {fileID: 0}
     - target: {fileID: 8691643562242225550, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
       propertyPath: m_Name
       value: AlienMushroom
@@ -1518,6 +1545,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 2846720757017412575, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
+      propertyPath: collisionsNeeded
+      value: 160
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
 --- !u!1001 &1446061601
@@ -1531,6 +1562,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 1037721582853987256, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
+      propertyPath: collisionsNeeded
+      value: 220
+      objectReference: {fileID: 0}
     - target: {fileID: 3702175637053602698, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1704,6 +1739,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 2846720757017412575, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
+      propertyPath: collisionsNeeded
+      value: 220
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
 --- !u!4 &1502049156 stripped
@@ -1722,6 +1761,10 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 1290889085}
+    - target: {fileID: 1037721582853987256, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
+      propertyPath: collisionsNeeded
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 3702175637053602698, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1872,6 +1915,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 1290889086}
+    - target: {fileID: 3035012528704634293, guid: bce05cfdfd1fd2d4fa305034c6188d85, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 412770852}
     - target: {fileID: 3035012528704634293, guid: bce05cfdfd1fd2d4fa305034c6188d85, type: 3}
       propertyPath: gameController
       value: 

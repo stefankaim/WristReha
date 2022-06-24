@@ -54,6 +54,8 @@ public class Menu : MonoBehaviour
     private Joycon activeJoycon;
     private int jc_ind = 0;
     public TMPro.TextMeshProUGUI conn;
+    public GameObject startMenu;
+    public GameObject gameMenu;
 
     private void Awake()
     {
@@ -73,15 +75,29 @@ public class Menu : MonoBehaviour
             if (activeJoycon.isLeft) conn.text = "Linker JoyCon verbunden";
             else conn.text = "Rechter JoyCon verbunden";
         }
+
+        if (Settings.gameScreen)
+        {
+            startMenu.SetActive(false);
+            gameMenu.SetActive(true);
+        }
+        else
+        {
+            startMenu.SetActive(true);
+            gameMenu.SetActive(false);
+        }
     }
 
     /// <summary>
     /// Starts the choosen game with choosen difficulty
     /// </summary>
-    public static void StartGameDiff()
+    public void StartGameDiff()
     {
-        Debug.Log("Game" + game + difficulty);
-        SceneManager.LoadScene("Game" + game + difficulty);
+        if (activeJoycon != null) activeJoycon.Detach();
+        //Debug.Log("Game" + game + difficulty);
+        //SceneManager.LoadScene("Game" + game + difficulty);
+        Settings.sceneToLoad = "Game" + game + difficulty;
+        SceneManager.LoadScene("Loading");
 
         //maybe do parameters
         //SceneManager.LoadScene(string sceneName, LoadSceneParameters parameters);
@@ -90,17 +106,22 @@ public class Menu : MonoBehaviour
     /// <summary>
     /// Starts the choosen game with choosen level
     /// </summary>
-    public static void StartGameLevel()
+    public void StartGameLevel()
     {
+        if (activeJoycon != null) activeJoycon.Detach();
         if (level > 0)
         {
-            Debug.Log("Game" + game + "Level" + level);
-            SceneManager.LoadScene("Game" + game + "Level" + level);
+            //Debug.Log("Game" + game + "Level" + level);
+            //SceneManager.LoadScene("Game" + game + "Level" + level);
+            Settings.sceneToLoad = "Game" + game + "Level" + level;
+            SceneManager.LoadScene("Loading");
         }
         else
         {
-            Debug.Log("Game" + game + "Tutorial");
-            SceneManager.LoadScene("Game" + game + "Tutorial");
+            //Debug.Log("Game" + game + "Tutorial");
+            //SceneManager.LoadScene("Game" + game + "Tutorial");
+            Settings.sceneToLoad = "Game" + game + "Tutorial";
+            SceneManager.LoadScene("Loading");
         }
 
         //maybe do parameters
@@ -133,7 +154,7 @@ public class Menu : MonoBehaviour
     /// Sets the number of the selected game
     /// </summary>
     /// <param name="gameNr">Number of the game selected</param>
-    public static void SetGame(int gameNr)
+    public void SetGame(int gameNr)
     {
         game = gameNr;
     }
@@ -143,7 +164,7 @@ public class Menu : MonoBehaviour
     /// Also starts the selected game
     /// </summary>
     /// <param name="diff">The difficulty</param>
-    public static void SetDifficulty(string diff)
+    public void SetDifficulty(string diff)
     {
         difficulty = diff;
         StartGameDiff();
@@ -154,7 +175,7 @@ public class Menu : MonoBehaviour
     /// Also starts the selected game
     /// </summary>
     /// <param name="lvl">The level</param>
-    public static void SetLevel(int lvl)
+    public void SetLevel(int lvl)
     {
         level = lvl;
         StartGameLevel();
@@ -163,7 +184,7 @@ public class Menu : MonoBehaviour
     /// <summary>
     /// Sets the time via the slider
     /// </summary>
-    public static void SetGameDuration()
+    public void SetGameDuration()
     {
         DurationSlider = Component.FindObjectsOfType<Slider>().ToList().Find(x => x.name == "DurationSlider");
         DurationText = Component.FindObjectsOfType<Text>().ToList().Find(x => x.name == "DurationText");
@@ -182,7 +203,7 @@ public class Menu : MonoBehaviour
     /// <summary>
     /// Opens the bluetooth menu of the computer
     /// </summary>
-    public static void OpenBluetoothConnection()
+    public void OpenBluetoothConnection()
     {
         Process.Start("control", "bthprops.cpl");
     }

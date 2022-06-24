@@ -8,6 +8,7 @@ public class SpoonController : MonoBehaviour
     public float rotationSpeedLeftRight = 20f;
     public TimeCounter Timer;
     public BalanceGameController gameController;
+    public PauseMenu PauseMenu;
 
 
     private List<Joycon> joycons;
@@ -17,6 +18,9 @@ public class SpoonController : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
     public Quaternion orientation;
+
+    private float pauseCooldown = 0.25f;
+    private float pauseCooldownElapsed = 0;
 
     private void Awake()
     {
@@ -35,17 +39,26 @@ public class SpoonController : MonoBehaviour
         else
         {
             activeJoycon = joycons[jc_ind];
+            activeJoycon.Recenter();
         }
     }
 
     private void Update()
     {
-
+        pauseCooldownElapsed += Time.deltaTime;
+        if (pauseCooldown <= pauseCooldownElapsed)
+        {
+            if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+            {
+                PauseMenu.Pause(activeJoycon);
+                pauseCooldownElapsed = 0;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Timer.countdownOver && !gameController.gameOver && !gameController.gameDone)
+        if (!gameController.gameOver && !gameController.gameDone)
         {
             #region MouseMovement
             //Vector2 input = new Vector2(Mover.Move.deltaX.ReadValue<float>(), Mover.Move.deltaY.ReadValue<float>());
@@ -64,7 +77,7 @@ public class SpoonController : MonoBehaviour
                 #endregion
 
                 transform.rotation = ConvertToGame(activeJoycon.GetVector());
-                transform.Rotate(100, 0, 0);
+                transform.Rotate(97, 0, 0);
             }
         }
     }
@@ -101,17 +114,8 @@ public class SpoonController : MonoBehaviour
     /// <summary>
     /// Stops reading from the controller without disconnecting
     /// </summary>
-    public IEnumerator StopPolling()
+    public void StopPolling()
     {
         activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 }

@@ -17,7 +17,7 @@ public class MissionController : MonoBehaviour
 
     //Game Over / Done
     public bool gameOver = false; //Game Over got >= 5 goals
-    public bool gameDone = false; //Game Done when >= 6 balls are catched
+    public bool gameDone = false; //Game Done when >= 0 goals and gameDuration is 0
     public float timeElapsed = 0f;
 
     //The time range when balls should spawn

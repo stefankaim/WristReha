@@ -11,7 +11,7 @@ public class AlienGameController : MonoBehaviour
     private float timeElapsed;
     private float timeUntilNextTutorial = 5f;
     private int tutorial = 0;
-    private string[] tutorialTexts = { "Blaue Pflanzen gieﬂen\nbis sie farbig werden", "Controller in alle Richtungen\nbewegen und auch halten", "Das Spiel ist vorbei wenn\n alle Pflanzen gegossen sind\noder das Wasser aus ist" };
+    private string[] tutorialTexts = { "Blaue Pflanzen gieﬂen\nbis sie farbig werden", "Controller in alle Richtungen\nbewegen und auch halten", "Das Spiel ist vorbei wenn\n alle Pflanzen gegossen sind\noder das Wasser aus ist", "Mit Schulter-Taste wird\nder Radius weiter" };
 
     public TimeCounter Timer;
     public InfoText InfoText;

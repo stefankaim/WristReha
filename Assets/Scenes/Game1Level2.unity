@@ -8938,6 +8938,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ab8d31aca2e124fbd02257b0a47b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1381749387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1189423369526556068, guid: c01b678a22205824191a3bd646d78495, type: 3}
+  m_PrefabInstance: {fileID: 1381749384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9733460a244cfb42b39d00e43bdd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1382264531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11378,6 +11389,10 @@ PrefabInstance:
       propertyPath: CamMover
       value: 
       objectReference: {fileID: 835521730}
+    - target: {fileID: 1734354619326118974, guid: c010eeb306605e848b25219650b63307, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1381749387}
     - target: {fileID: 1734354619326118974, guid: c010eeb306605e848b25219650b63307, type: 3}
       propertyPath: JoyConManager
       value: 

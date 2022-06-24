@@ -47,7 +47,7 @@ public class BalanceGameController : MonoBehaviour
 
     private void Start()
     {
-        Timer.StartCountdown(3);
+        Timer.StartCountdown(5);
         nextForce = Random.Range(timeForce.x, timeForce.y);
         nextForceIndicator.SetNextForceTime(nextForce);
     }
@@ -111,7 +111,6 @@ public class BalanceGameController : MonoBehaviour
     {
         spoon.RumbleJoyCon(0);
         spoon.StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameOver = true;
         InfoText.SetGameOver();
@@ -124,7 +123,6 @@ public class BalanceGameController : MonoBehaviour
     {
         spoon.RumbleJoyCon(0);
         spoon.StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameDone = true;
         InfoText.SetGameDone();

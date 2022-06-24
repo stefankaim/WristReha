@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
 
+    public PauseMenu PauseMenu;
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
+
+
+
     void Awake()
     {
         #region MouseInput
@@ -133,6 +139,15 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            pauseCooldownElapsed += Time.deltaTime;
+            if (pauseCooldown <= pauseCooldownElapsed)
+            {
+                if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+                {
+                    PauseMenu.Pause(activeJoycon);
+                    pauseCooldownElapsed = 0;
+                }
+            }
         }
     }
 
@@ -205,9 +220,7 @@ public class PlayerController : MonoBehaviour
         if (!gameDone)
         {
             if (tutorial && Tutorial != null) Tutorial.SetText("");
-            RumbleJoyCon(0, 0);
             StopPolling();
-            if (JoyConManager != null) JoyConManager.SetActive(false);
             Timer.StopTimer();
             CamMover.Stop();
             gameOver = true;
@@ -223,10 +236,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("EndOfLevel") || collision.gameObject.name.Contains("SkipTutorial"))
         {
-            RumbleJoyCon(0, 0);
             if (tutorial && Tutorial != null) Tutorial.SetText("");
             StopPolling();
-            if (JoyConManager != null) JoyConManager.SetActive(false);
             Timer.StopTimer();
             CamMover.Stop();
             gameDone = true;
@@ -296,17 +307,8 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Stops reading from the controller without disconnecting
     /// </summary>
-    public IEnumerator StopPolling()
+    public void StopPolling()
     {
         activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 }

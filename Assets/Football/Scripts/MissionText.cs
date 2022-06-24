@@ -13,6 +13,7 @@ public class MissionText : MonoBehaviour
     private bool nextSceneExists = false;
     public bool gameOver = false, gameDone = false;
     private string nextSceneName;
+    private string currentSceneName;
     private readonly string easy = "Easy", medium = "Medium", hard = "Hard";
 
     private void Awake()
@@ -24,6 +25,7 @@ public class MissionText : MonoBehaviour
 
 
         string currentName = currentScene.name;
+        currentSceneName = currentName;
         if (currentName.ToLowerInvariant().Contains("tutorial"))
         {
             nextSceneName = currentName.Substring(0, 5) + easy;
@@ -135,9 +137,10 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void LevelButtonClicked()
     {
-        if (gameOver) SceneManager.LoadScene(currentScene.buildIndex);
-        else if (nextSceneExists) SceneManager.LoadScene(nextSceneName);
-        else SceneManager.LoadScene(0);
+        if (gameOver) Settings.sceneToLoad = currentSceneName;
+        else if (nextSceneExists) Settings.sceneToLoad = nextSceneName;
+        else Settings.sceneToLoad = "Menu";
+        SceneManager.LoadScene("Loading");
     }
 
     /// <summary>
@@ -145,6 +148,7 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void MenuButtonClicked()
     {
-        SceneManager.LoadScene(0);
+        Settings.sceneToLoad = "Menu";
+        SceneManager.LoadScene("Loading");
     }
 }

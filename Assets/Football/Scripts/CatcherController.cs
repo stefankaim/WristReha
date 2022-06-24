@@ -14,6 +14,7 @@ public class CatcherController : MonoBehaviour
     public Camera cam;
     public TimeCounter Timer;
     public MissionText MissionInfo;
+    public PauseMenu PauseMenu;
 
     public GameObject JoyConManager;
     private List<Joycon> joycons;
@@ -22,6 +23,9 @@ public class CatcherController : MonoBehaviour
     public Vector3 gyro;
     public Vector3 accel;
     public int jc_ind = 0;
+
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
 
     void Awake()
     {
@@ -57,6 +61,21 @@ public class CatcherController : MonoBehaviour
         else
         {
             activeJoycon = joycons[jc_ind];
+            //activeJoycon.Begin();
+            activeJoycon.Recenter();
+        }
+    }
+
+    private void Update()
+    {
+        pauseCooldownElapsed += Time.deltaTime;
+        if (pauseCooldown <= pauseCooldownElapsed)
+        {
+            if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+            {
+                PauseMenu.Pause(activeJoycon);
+                pauseCooldownElapsed = 0;
+            }
         }
     }
 
@@ -93,9 +112,7 @@ public class CatcherController : MonoBehaviour
     /// </summary>
     public void StopControl()
     {
-        RumbleJoyCon(0);
-        StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
+        activeJoycon.Detach();
     }
 
     /// <summary>
@@ -108,23 +125,6 @@ public class CatcherController : MonoBehaviour
     {
         percent = Mathf.Clamp(percent, 0, 1);
         activeJoycon.SetRumble(160, 320, percent * 0.6f, (int)(percent * 200));
-    }
-
-    /// <summary>
-    /// Stops reading from the controller without disconnecting
-    /// </summary>
-    private IEnumerator StopPolling()
-    {
-        activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    private IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 
     #region MouseInput

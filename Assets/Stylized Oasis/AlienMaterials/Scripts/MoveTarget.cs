@@ -5,12 +5,16 @@ using UnityEngine;
 public class MoveTarget : MonoBehaviour
 {
     public TimeCounter Timer;
+    public PauseMenu PauseMenu;
 
     private SprinkleMover Mover;
     private Vector3 direction;
     private new Camera camera;
     private Vector3 moveDirection = Vector3.zero;
     public AlienGameController gameController;
+    private ParticleSystem water;
+    private ParticleSystem.ShapeModule shape;
+    private ParticleSystem.MainModule waterMain;
 
     private List<Joycon> joycons;
     private Joycon activeJoycon;
@@ -20,6 +24,9 @@ public class MoveTarget : MonoBehaviour
     public Vector3 accel;
     public int jc_ind = 0;
     public Quaternion orientation;
+
+    private float pauseCooldownElapsed;
+    private float pauseCooldown = 0.25f;
 
 
     private void Awake()
@@ -32,6 +39,9 @@ public class MoveTarget : MonoBehaviour
         //Mover.Move.deltaY.performed += ctx => MoveY(ctx.ReadValue<float>());
         //Mover.Move.deltaY.canceled += ctx => MoveY(0);
         #endregion
+        water = gameController.waterParticles.GetComponent<ParticleSystem>();
+        shape = water.shape;
+        waterMain = water.main;
     }
 
     // Start is called before the first frame update
@@ -69,6 +79,27 @@ public class MoveTarget : MonoBehaviour
             gyro = activeJoycon.GetGyro();
             Vector2 input = new Vector2(gyro.z, gyro.y);
             transform.position += (Vector3.up * input.y + right * input.x) * Time.deltaTime * speed;
+
+            if (activeJoycon.GetButton(Joycon.Button.SHOULDER_1) || activeJoycon.GetButton(Joycon.Button.SHOULDER_2))
+            {
+                shape.angle = 25f;
+                waterMain.startSpeed = 8f;
+            }
+            else
+            {
+                shape.angle = 0.5f;
+                waterMain.startSpeed = 10f;
+            }
+
+            pauseCooldownElapsed += Time.deltaTime;
+            if (pauseCooldown <= pauseCooldownElapsed)
+            {
+                if (activeJoycon.GetButton(Joycon.Button.PLUS) || activeJoycon.GetButton(Joycon.Button.MINUS))
+                {
+                    PauseMenu.Pause(activeJoycon);
+                    pauseCooldownElapsed = 0;
+                }
+            }
         }
     }
 
@@ -85,19 +116,9 @@ public class MoveTarget : MonoBehaviour
     /// <summary>
     /// Stops reading from the controller without disconnecting
     /// </summary>
-    public IEnumerator StopPolling()
+    public void StopPolling()
     {
-        activeJoycon.SetRumble(160, 320, 0, 0);
         activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 
     #region MouseInput

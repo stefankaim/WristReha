@@ -402,6 +402,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93383ab2018a4c94e9a0192e2c62111e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &561912888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3461990629775581709, guid: fe91759ec62180944ac1bda115da320a, type: 3}
+  m_PrefabInstance: {fileID: 561912883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9733460a244cfb42b39d00e43bdd4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &632048885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -461,6 +472,10 @@ PrefabInstance:
       propertyPath: Timer
       value: 
       objectReference: {fileID: 561912884}
+    - target: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 561912888}
     - target: {fileID: 11427832, guid: 48dd7b30ca5ee0c4e8132917d4dbf445, type: 3}
       propertyPath: MissionInfo
       value: 
@@ -1093,7 +1108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3540467896931524747, guid: 4d03c1eda3160bd4bb70c4c7e3c405ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.04
+      value: -6.69
       objectReference: {fileID: 0}
     - target: {fileID: 3540467896931524747, guid: 4d03c1eda3160bd4bb70c4c7e3c405ab, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1158,7 +1173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3540467896931524747, guid: 4d03c1eda3160bd4bb70c4c7e3c405ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.98
+      value: -6.75
       objectReference: {fileID: 0}
     - target: {fileID: 3540467896931524747, guid: 4d03c1eda3160bd4bb70c4c7e3c405ab, type: 3}
       propertyPath: m_LocalPosition.z
