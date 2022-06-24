@@ -12,6 +12,9 @@ public class MoveTarget : MonoBehaviour
     private new Camera camera;
     private Vector3 moveDirection = Vector3.zero;
     public AlienGameController gameController;
+    private ParticleSystem water;
+    private ParticleSystem.ShapeModule shape;
+    private ParticleSystem.MainModule waterMain;
 
     private List<Joycon> joycons;
     private Joycon activeJoycon;
@@ -36,6 +39,9 @@ public class MoveTarget : MonoBehaviour
         //Mover.Move.deltaY.performed += ctx => MoveY(ctx.ReadValue<float>());
         //Mover.Move.deltaY.canceled += ctx => MoveY(0);
         #endregion
+        water = gameController.waterParticles.GetComponent<ParticleSystem>();
+        shape = water.shape;
+        waterMain = water.main;
     }
 
     // Start is called before the first frame update
@@ -73,6 +79,17 @@ public class MoveTarget : MonoBehaviour
             gyro = activeJoycon.GetGyro();
             Vector2 input = new Vector2(gyro.z, gyro.y);
             transform.position += (Vector3.up * input.y + right * input.x) * Time.deltaTime * speed;
+
+            if (activeJoycon.GetButton(Joycon.Button.SHOULDER_1) || activeJoycon.GetButton(Joycon.Button.SHOULDER_2))
+            {
+                shape.angle = 25f;
+                waterMain.startSpeed = 8f;
+            }
+            else
+            {
+                shape.angle = 0.5f;
+                waterMain.startSpeed = 10f;
+            }
 
             pauseCooldownElapsed += Time.deltaTime;
             if (pauseCooldown <= pauseCooldownElapsed)

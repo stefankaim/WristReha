@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22382563, g: 0.17876434, b: 0.2029326, a: 1}
+  m_IndirectSpecularColor: {r: 0.22282684, g: 0.17497742, b: 0.19343114, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 2142203665}
     - target: {fileID: 2846720757017412575, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
       propertyPath: collisionsNeeded
-      value: 1200
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bd966c6ecb8a3d4ea565f852b77f7ea, type: 3}
@@ -409,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 2142203665}
     - target: {fileID: 8320723144687964434, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
       propertyPath: collisionsNeeded
-      value: 500
+      value: 380
       objectReference: {fileID: 0}
     - target: {fileID: 8691643562242225550, guid: 40371948fee5e8743b7b18309bd76687, type: 3}
       propertyPath: m_Name
@@ -554,7 +554,7 @@ PrefabInstance:
       objectReference: {fileID: 2142203665}
     - target: {fileID: 1037721582853987256, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
       propertyPath: collisionsNeeded
-      value: 800
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 3702175637053602698, guid: ee6adb470ff70ef429acdf03104a7852, type: 3}
       propertyPath: m_RootOrder
