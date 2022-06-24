@@ -112,6 +112,7 @@ public class CatcherController : MonoBehaviour
     /// </summary>
     public void StopControl()
     {
+        activeJoycon.Detach();
         //RumbleJoyCon(0);
         //StopPolling();
         //if (JoyConManager != null) JoyConManager.SetActive(false);
