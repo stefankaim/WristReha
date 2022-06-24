@@ -111,7 +111,6 @@ public class BalanceGameController : MonoBehaviour
     {
         spoon.RumbleJoyCon(0);
         spoon.StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameOver = true;
         InfoText.SetGameOver();
@@ -124,7 +123,6 @@ public class BalanceGameController : MonoBehaviour
     {
         spoon.RumbleJoyCon(0);
         spoon.StopPolling();
-        if (JoyConManager != null) JoyConManager.SetActive(false);
         Timer.StopTimer();
         gameDone = true;
         InfoText.SetGameDone();

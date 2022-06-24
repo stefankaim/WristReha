@@ -99,19 +99,9 @@ public class MoveTarget : MonoBehaviour
     /// <summary>
     /// Stops reading from the controller without disconnecting
     /// </summary>
-    public IEnumerator StopPolling()
+    public void StopPolling()
     {
-        activeJoycon.SetRumble(160, 320, 0, 0);
         activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 
     #region MouseInput

@@ -113,9 +113,6 @@ public class CatcherController : MonoBehaviour
     public void StopControl()
     {
         activeJoycon.Detach();
-        //RumbleJoyCon(0);
-        //StopPolling();
-        //if (JoyConManager != null) JoyConManager.SetActive(false);
     }
 
     /// <summary>
@@ -128,23 +125,6 @@ public class CatcherController : MonoBehaviour
     {
         percent = Mathf.Clamp(percent, 0, 1);
         activeJoycon.SetRumble(160, 320, percent * 0.6f, (int)(percent * 200));
-    }
-
-    /// <summary>
-    /// Stops reading from the controller without disconnecting
-    /// </summary>
-    private IEnumerator StopPolling()
-    {
-        activeJoycon.Detach();
-        yield return joyconWaiter();
-    }
-
-    /// <summary>
-    /// Waits until the JoyCon is disconnected
-    /// </summary>
-    private IEnumerator joyconWaiter()
-    {
-        yield return new WaitWhile(() => activeJoycon.state == Joycon.state_.NOT_ATTACHED);
     }
 
     #region MouseInput

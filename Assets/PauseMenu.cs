@@ -73,6 +73,7 @@ public class PauseMenu : MonoBehaviour
     /// </summary>
     public void MainMenu()
     {
+        activeJoycon.Detach();
         Time.timeScale = 1f;
         //SceneManager.LoadScene(0);
         Settings.sceneToLoad = "Menu";

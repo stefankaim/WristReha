@@ -137,12 +137,9 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void LevelButtonClicked()
     {
-        //if (gameOver) SceneManager.LoadScene(currentScene.buildIndex);
-        //else if (nextSceneExists) SceneManager.LoadScene(nextSceneName);
-        //else SceneManager.LoadScene(0);
-        if (gameOver) Settings.sceneToLoad = currentSceneName;// SceneManager.LoadScene(currentScene.buildIndex);
-        else if (nextSceneExists) Settings.sceneToLoad = nextSceneName; //SceneManager.LoadScene(nextSceneName);
-        else Settings.sceneToLoad = "Menu"; //SceneManager.LoadScene(0);
+        if (gameOver) Settings.sceneToLoad = currentSceneName;
+        else if (nextSceneExists) Settings.sceneToLoad = nextSceneName;
+        else Settings.sceneToLoad = "Menu";
         SceneManager.LoadScene("Loading");
     }
 
@@ -151,7 +148,6 @@ public class MissionText : MonoBehaviour
     /// </summary>
     public void MenuButtonClicked()
     {
-        //SceneManager.LoadScene(0);
         Settings.sceneToLoad = "Menu";
         SceneManager.LoadScene("Loading");
     }

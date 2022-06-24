@@ -10841,6 +10841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JoyConManager: {fileID: 1034112411}
   conn: {fileID: 1897441858}
+  startMenu: {fileID: 1299442832}
+  gameMenu: {fileID: 1397474176}
 --- !u!1 &1299886755
 GameObject:
   m_ObjectHideFlags: 0

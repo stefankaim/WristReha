@@ -15,6 +15,7 @@ public class Loading : MonoBehaviour
     private void Awake()
     {
         nextSceneName = Settings.sceneToLoad;
+        Settings.gameScreen = true;
     }
 
     // Update is called once per frame

@@ -13,6 +13,7 @@ public class InfoText : MonoBehaviour
     private bool nextSceneExists = false;
     private bool gameOver = false;
     private string nextSceneName;
+    private string currentSceneName;
 
 
     private void Awake()
@@ -23,6 +24,7 @@ public class InfoText : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
 
         string currentName = currentScene.name;
+        currentSceneName = currentName;
         if (currentName.ToLowerInvariant().Contains("tutorial"))
         {
             nextSceneName = currentName.Substring(0, 5) + "Level1";
@@ -133,9 +135,10 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void LevelButtonClicked()
     {
-        if (gameOver) SceneManager.LoadScene(currentScene.buildIndex);
-        else if (nextSceneExists) SceneManager.LoadScene(nextSceneName);
-        else SceneManager.LoadScene(0);
+        if (gameOver) Settings.sceneToLoad = currentSceneName;
+        else if (nextSceneExists) Settings.sceneToLoad = nextSceneName;
+        else Settings.sceneToLoad = "Menu";
+        SceneManager.LoadScene("Loading");
     }
 
     /// <summary>
@@ -143,6 +146,7 @@ public class InfoText : MonoBehaviour
     /// </summary>
     public void MenuButtonClicked()
     {
-        SceneManager.LoadScene(0);
+        Settings.sceneToLoad = "Menu";
+        SceneManager.LoadScene("Loading");
     }
 }

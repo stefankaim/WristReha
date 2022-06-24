@@ -20,4 +20,11 @@ public static class Settings
     /// The next scene that should be loaded
     /// </summary>
     public static string sceneToLoad;
+
+    /// <summary>
+    /// When clicked on "Hauptmenü"
+    /// true: The scene loads to the game choose menu
+    /// false: The scene loads to start screen
+    /// </summary>
+    public static bool gameScreen = false;
 }
